@@ -1,0 +1,113 @@
+/*
+ * Global styles go here
+ */
+
+// Colors
+// @primary: #FF6433;
+@primary: #20323E;
+@darkGrey: #20323E;
+@green: #27AE60;
+@blueText: #192B3A;
+@greyText: #939191;
+@primaryText: #444444;
+@greyBG: #E2E6E9;
+
+// General
+@borderRadius: 8px;
+
+// Texts
+@heading-1: 55px;
+@heading-1-tablet: 45px;
+@heading-1-mobile: 30px;
+
+@heading-2: 40px;
+@heading-2-tablet: 30px;
+@heading-2-mobile: 25px;
+
+@heading-3: 35px;
+@heading-3-tablet: 30px;
+@heading-3-mobile: 25px;
+
+
+@font-face {
+    font-family: "Moon";
+    src: url(./../fonts/Moon.otf);
+}
+
+img {
+    pointer-events: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    .primaryFont();
+    background-color: #fafafa;
+    overflow-x: hidden;
+
+    &.disable-scroll {
+        overflow-y: hidden;
+        height: 100vh;
+    }
+}
+body.cyrillic-font {
+    * {
+        font-family: "Comfortaa" !important;
+        letter-spacing: 0;
+    }
+    .fa, .far, .fas {
+        font-family: "Font Awesome 5 Free" !important;
+    }
+    .fab {
+        font-family: "Font Awesome 5 Brands" !important;
+    }
+}
+h1, h2, h3, h4, h5, h6, ul, li, a, span, p, div, a, input, button, textarea {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    .primaryFont();
+    text-decoration: none;
+    list-style: none;
+    box-shadow: none;
+    background-color: transparent;
+    letter-spacing: 1px;
+    border: none;
+}
+a, span {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+    text-decoration: inherit;
+}
+p {
+    line-height: 2;
+}
+.primaryFont(@weight: 500) {
+    font-family: "Moon";
+    font-weight: @weight;
+}
+
+.overflow() {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+.custom-scrollbar {
+	&::-webkit-scrollbar {
+		background-color: #efefef;
+		width: 8px;
+		height: 8px;
+		border: 2px solid #fff;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: @primary;
+		height: 5px;
+		width: 8px;
+		border: 2px solid #fff;
+	}
+}
