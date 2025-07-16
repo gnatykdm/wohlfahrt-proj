@@ -1,8 +1,10 @@
 import './FaqPage.css';
+import Header from '../../components/header/Header';
 
 const FaqPage = () => {
     return (
         <div className="faq">
+            <Header />
             <h1>Frequently Asked Questions</h1>
             <div className="faq-item">
                 <h2>What is this application about?</h2>

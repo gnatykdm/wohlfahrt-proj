@@ -11,6 +11,7 @@
 @greyText: #939191;
 @primaryText: #444444;
 @greyBG: #E2E6E9;
+@accent: #E2E6E9;
 
 // General
 @borderRadius: 8px;
@@ -30,9 +31,16 @@
 
 
 @font-face {
-    font-family: "Moon";
-    src: url(./../fonts/Moon.otf);
+  font-family: 'Moon';
+  src: url('./assets/fonts/Moon.woff2') format('woff2'),
+       url('./assets/fonts/Moon.woff') format('woff'),
+       url('./assets/fonts/Moon.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
+
+
 
 img {
     pointer-events: none;
