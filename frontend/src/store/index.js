@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 const initialState = {
   selectedLang: 'en',
   generalInfo: {
-    copyright: '© 2025 Your Company',
+    copyright: '© 2025 Wohlfahrt. All rights reserved.',
     navList: {
       home: { en: 'Home', ua: 'Головна' },
       about: { en: 'About', ua: 'Про нас' },
@@ -12,7 +12,7 @@ const initialState = {
       faq: { en: 'FAQ', ua: 'Питання' }
     },
     headerTexts: {
-      contactUs: { en: 'Contact us', ua: 'Зв\'язатися' }
+      contactUs: { en: 'Contact us', ua: 'Зв\'язатися з нами' }
     }
   },
   contactsInfo: {
