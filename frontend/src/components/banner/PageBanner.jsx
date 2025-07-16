@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Send } from 'react-bootstrap-icons';
 import './PageBanner.less';
 
 export default function PageBanner() {
@@ -25,7 +26,10 @@ export default function PageBanner() {
           <div className="actions">
             <Link to="/contacts" className="btn light">
               <span className="fas fa-paper-plane"></span>
-              <span>{generalInfo.banner.buttonText[lang]}</span>
+              <span>
+                <Send style={{ marginRight: '8px' }} /> 
+                {generalInfo.banner.buttonText[lang]}
+              </span>
             </Link>
           </div>
         </div>
