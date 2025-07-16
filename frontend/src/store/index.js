@@ -24,8 +24,8 @@ const initialState = {
 
     banner: {
       title: {
-        en: 'Welcome to Wohlfahrt — Excellence in Every Project',
-        ua: 'Ласкаво просимо до Wohlfahrt — Відмінність у кожному проекті'
+        en: 'Logistics with us is simple and affordable',
+        ua: 'Логістика з нами це просто та доступно'
       },
       buttonText: {
         en: 'Contact Us',
