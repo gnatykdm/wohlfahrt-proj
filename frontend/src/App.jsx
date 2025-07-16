@@ -1,15 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async'; 
+import React from 'react';
+import './styles/App.css';
 
 import Home from './pages/home/HomePage';
 import About from './pages/about/AboutPage';
 import Services from './pages/services/ServicesPage';
 import Faq from './pages/faq/FaqPage';
-import Contacts from './pages/contacts/ContactPage'
+import Contacts from './pages/contacts/ContactPage';
 import NotFound from './pages/404/NotFoundPage';
 
 function App() {
   return (
     <Router>
+      <Helmet>
+        <title>Wohlfahrt</title>
+        <meta charSet='UTF-8' />
+      </Helmet>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -22,4 +30,10 @@ function App() {
   );
 }
 
-export default App;
+export default function Root() {
+  return (
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  );
+}
