@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Send } from 'react-bootstrap-icons';
 import axios from 'axios';
 import './ContactForm.less';
 
@@ -114,7 +115,7 @@ export default function ContactForm() {
             <div className="loader line-scale-pulse-out">
               <div></div><div></div><div></div><div></div><div></div>
             </div>
-            <span className="fas fa-paper-plane"></span>
+            <Send style={{ marginRight: '8px' }} /> 
             <span>{lang === 'ua' ? 'Надіслати' : 'Send'}</span>
           </button>
         </div>
