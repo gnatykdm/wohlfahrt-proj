@@ -20,6 +20,21 @@ const initialState = {
     footerTitle: {
       en: 'We may not exceed your expectations — but we will definitely meet them',
       ua: 'Може ми не перевершимо ваші очікування – але ми точно їм відповідатимемо'
+    },
+
+    banner: {
+      title: {
+        en: 'Welcome to Wohlfahrt — Excellence in Every Project',
+        ua: 'Ласкаво просимо до Wohlfahrt — Відмінність у кожному проекті'
+      },
+      buttonText: {
+        en: 'Contact Us',
+        ua: 'Зв\'язатися'
+      },
+      images: {
+        left: '../../src/assets/img/page-banner-left.png',
+        right: '../../src/assets/img/page-banner-right.png'
+      }
     }
   },
   contactsInfo: {

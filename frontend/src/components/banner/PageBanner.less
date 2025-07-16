@@ -1,0 +1,79 @@
+@import '../../styles/global.less';
+
+.page-banner {
+    position: relative;
+
+    .bg-left, .bg-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
+    .bg-left {
+        left: 0;
+    }
+    .bg-right {
+        right: 0;
+    }
+    .wrapper {
+        position: relative;
+        z-index: 2;
+    }
+    .banner {
+        padding: 140px 50px;
+        width: 50%;
+        box-sizing: border-box;
+        background-color: @primary;
+
+        .title {
+            font-size: @heading-3;
+            color: #fff;
+            .primaryFont(700)
+        }
+        .actions {
+            margin-top: 40px;
+        }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    
+}
+@media (max-width: 900px) {
+    .page-banner {
+        margin-bottom: 30px;
+
+        .bg-left, .bg-right {
+            display: none;
+        }
+        .banner {
+            padding: 80px 50px;
+            width: 100%;
+            border-radius: @borderRadius;
+
+            .title {
+                font-size: @heading-3-tablet;
+            }
+        }
+    }
+}
+@media (max-width: 600px) {
+    .page-banner {
+        .banner {
+            padding: 50px 30px;
+
+            .title {
+                font-size: @heading-3-mobile;
+            }
+            .actions {
+                margin-top: 30px;
+            }
+        }
+    }
+}
