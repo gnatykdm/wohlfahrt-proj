@@ -2,6 +2,7 @@ import './ContactPage.css';
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import ContactForm from '../../components/form/ContactForm';
 
 const ContactPage = () => {
     return (
@@ -10,23 +11,8 @@ const ContactPage = () => {
             <main>
                 <h1>Contact Us</h1>
                 <p>If you have any questions, feel free to reach out!</p>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" name="name" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit">Send</button>
-                </form>
+                <ContactForm />
             </main>
-            <Footer />
         </div>
     );
 }
