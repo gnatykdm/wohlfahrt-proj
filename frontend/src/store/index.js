@@ -3,7 +3,10 @@ import { createStore } from 'redux';
 const initialState = {
   selectedLang: 'en',
   generalInfo: {
-    copyright: '© 2025 Wohlfahrt. All rights reserved.',
+    copyright: {
+      en: '© 2025 Wohlfahrt. All rights reserved.',
+      ua: '© 2025 Wohlfahrt. Всі права захищено.'
+    },
     navList: {
       home: { en: 'Home', ua: 'Головна' },
       about: { en: 'About', ua: 'Про нас' },
@@ -13,10 +16,43 @@ const initialState = {
     },
     headerTexts: {
       contactUs: { en: 'Contact us', ua: 'Зв\'язатися з нами' }
+    },
+    footerTitle: {
+      en: 'We may not exceed your expectations — but we will definitely meet them',
+      ua: 'Може ми не перевершимо ваші очікування – але ми точно їм відповідатимемо'
     }
   },
   contactsInfo: {
-    phones: [{ value: '+123456789' }]
+    title: {
+      en: 'Contact information',
+      ua: 'Контактна інформація'
+    },
+    phones: [{
+      value: '+380634076931',
+      title: {
+        en: 'Phone',
+        ua: 'Телефон'
+      }
+    }],
+    emails: [{
+      value: 'info@wohlfahrt.com.ua',
+      title: {
+        en: 'Email',
+        ua: 'Електронна пошта'
+      }
+    }],
+    address: {
+      title: {
+        en: 'Address',
+        ua: 'Адреса'
+      },
+      value: {
+        en: '04116, Kyiv, Bohdan Havrylyshyn St., 27/29',
+        ua: '04116, м. Київ, вул. Богдана Гаврилишина, б. 27/29'
+      }
+    },
+    map: '',
+    bottomImage: 'https://placehold.co/1920x400?text=Footer+Image'
   }
 };
 

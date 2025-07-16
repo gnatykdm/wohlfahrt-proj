@@ -1,0 +1,46 @@
+@import './global.less';
+
+.global-container {
+    padding-top: 63px;
+}
+.section-title {
+    text-align: center;
+
+    &.left {
+        text-align: left;
+    }
+    .sub-title {
+        color: @greyText;
+    }
+    .title {
+        font-size: @heading-2;
+        color: @blueText;
+        .primaryFont(800);
+    }
+    .line {
+        margin-top: 20px;
+        display: inline-block;
+        height: 4px;
+        width: 50px;
+        border-radius: 10px;
+        background-color: @primary;
+    }
+}
+
+@media (max-width: 1200px) {
+    
+}
+@media (max-width: 900px) {
+    .section-title {
+        .title {
+            font-size: @heading-2-tablet;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .section-title {
+        .title {
+            font-size: @heading-2-mobile;
+        }
+    }
+}

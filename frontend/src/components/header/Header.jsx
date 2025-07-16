@@ -142,7 +142,7 @@ export default function Header() {
             </div>
             <div className="footer-credentials">
               <center>
-                <p>{generalInfo?.copyright}</p>
+                <p>{generalInfo?.copyright?.[lang]}</p>
               </center>
             </div>
           </div>
