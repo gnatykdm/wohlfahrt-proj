@@ -8,6 +8,7 @@ import './styles/index.css';
 import './styles/grid.css';
 import './styles/style.less';
 import './styles/global.less';
+import './styles/buttons.less';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
