@@ -47,22 +47,6 @@ export default function ContactForm() {
       {/* Static Contact Info */}
       <div className="contact-info-static">
         <h2>{contactsInfo.title?.[lang] || 'Контакти'}</h2>
-
-        {contactsInfo.phones.map((phone, i) => (
-          <p key={`phone-${i}`}>
-            <strong>{phone.title[lang]}:</strong> {phone.value}
-          </p>
-        ))}
-
-        {contactsInfo.emails.map((email, i) => (
-          <p key={`email-${i}`}>
-            <strong>{email.title[lang]}:</strong> {email.value}
-          </p>
-        ))}
-
-        <p>
-          <strong>{contactsInfo.address.title[lang]}:</strong> {contactsInfo.address.value[lang]}
-        </p>
       </div>
 
       {/* Contact Form */}

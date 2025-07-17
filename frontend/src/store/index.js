@@ -4,7 +4,6 @@ const initialState = {
   selectedLang: 'en',
 
   generalInfo: {
-    // ... unchanged
     copyright: {
       en: '© 2025 Wohlfahrt. All rights reserved.',
       ua: '© 2025 Wohlfahrt. Всі права захищено.'
@@ -40,7 +39,6 @@ const initialState = {
   },
 
   contactsInfo: {
-    // ... unchanged
     title: {
       en: 'Contact information',
       ua: 'Контактна інформація'
@@ -65,7 +63,6 @@ const initialState = {
   },
 
   homePageContent: {
-    // ... unchanged
     intro: {
       slides: [
         {
@@ -125,8 +122,70 @@ const initialState = {
     }
   },
 
+  aboutPageContent: {
+    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-photoscom-93398.jpg?alt=media&token=cfd6d59c-2a28-4291-baa0-a42bb3550dbf', // update
+    title: {
+      en: 'About company',
+      ua: 'Про компанію'
+    },
+    text: {
+      en: 'Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.',
+      ua: 'ТОВ Вольфарт — молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
+    },
+    buttonText: {
+      en: 'Read more',
+      ua: 'Читати більше'
+    },
+    list: [
+      {
+        title: {
+          en: 'Who we are',
+          ua: 'Хто ми'
+        },
+        text: {
+          en: `Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.<br/><br/>
+               Our company provides a full range of supply chain management services: warehousing, transportation by all types of transport, customs clearance.`,
+          ua: `ТОВ Вольфарт — молода, швидкозростаюча компанія, універсальний український логістичний оператор.<br/><br/>
+               Наша компанія надає повний комплекс послуг: складування, перевезення всіма видами транспорту, митне оформлення.`
+        },
+        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-pixabay-209251.jpg?alt=media&token=243cd620-26bf-4966-9d92-939058031f0d'
+      },
+      {
+        title: {
+          en: 'Experience & Expertise',
+          ua: 'Досвід та експертиза'
+        },
+        text: {
+          en: `Our employees have many years of experience in international transport logistics and warehouse services.<br/><br/>
+               We are attentive — there are no little things in logistics.`,
+          ua: `Наші співробітники мають багаторічний досвід у міжнародній транспортній логістиці та складських послугах.<br/><br/>
+               Ми уважні — у логістичному процесі немає дрібниць.`
+        },
+        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-1427107.jpg?alt=media&token=0119c43c-c6e6-4d18-ab0c-d608028f20e8'
+      },
+      {
+        title: {
+          en: 'Ambition backed by professionalism',
+          ua: 'Амбіції, підкріплені професіоналізмом'
+        },
+        text: {
+          en: `Our ambitions are backed by professionalism, tailored solutions, responsibility, and efficiency.<br/><br/>
+               We stay ahead of changes and help clients reduce risk.`,
+          ua: `Наші амбіції підкріплені професіоналізмом, індивідуальним підходом, відповідальністю та оперативністю.<br/><br/>
+               Ми випереджаємо зміни й допомагаємо клієнтам зменшувати ризики.`
+        },
+        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-3840441.jpg?alt=media&token=16a66f5d-6969-499f-87b5-b86bd8a89146'
+      },
+    ]
+  },
   servicesPageContent: {
-    // ... unchanged
+    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-pixabay-262353.jpg?alt=media&token=83aa9da0-4ddb-4b69-b90d-56c0209a6cc2', // например, фон для intro-section
+    title: { en: 'Services', ua: 'Послуги' },
+    text: {
+      en: 'Our company provides transport, customs brokerage and warehouse services',
+      ua: 'Наша компанія надає транспортні, митно-брокерські та складські послуги'
+    },
+    buttonText: { en: 'Learn more', ua: 'Дізнатись більше' },
     list: [
       {
         images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-kai-pilger-1544372.jpg?alt=media&token=97496a07-1a7b-411e-ad3f-24fcbf9f2b31' },
@@ -160,66 +219,31 @@ const initialState = {
     ]
   },
 
-  /* NEW: About Page content for React port */
-  aboutPageContent: {
-    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-photoscom-93398.jpg?alt=media&token=cfd6d59c-2a28-4291-baa0-a42bb3550dbf', // update
+   contactsPageContent: {
     title: {
-      en: 'About company',
-      ua: 'Про компанію'
+      en: 'Contacts',
+      ua: 'Контакти'
     },
-    text: {
-      en: 'Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.',
-      ua: 'ТОВ Вольфарт — молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
-    },
-    buttonText: {
-      en: 'Read more',
-      ua: 'Читати більше'
-    },
-    list: [
+    phones: [
       {
-        // Intro / Mission
-        title: {
-          en: 'Who we are',
-          ua: 'Хто ми'
-        },
-        text: {
-          en: `Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.<br/><br/>
-               Our company provides a full range of supply chain management services: warehousing, transportation by all types of transport, customs clearance.`,
-          ua: `ТОВ Вольфарт — молода, швидкозростаюча компанія, універсальний український логістичний оператор.<br/><br/>
-               Наша компанія надає повний комплекс послуг: складування, перевезення всіма видами транспорту, митне оформлення.`
-        },
-        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-pixabay-209251.jpg?alt=media&token=243cd620-26bf-4966-9d92-939058031f0d'
-      },
-      {
-        // Expertise
-        title: {
-          en: 'Experience & Expertise',
-          ua: 'Досвід та експертиза'
-        },
-        text: {
-          en: `Our employees have many years of experience in international transport logistics and warehouse services.<br/><br/>
-               We are attentive — there are no little things in logistics.`,
-          ua: `Наші співробітники мають багаторічний досвід у міжнародній транспортній логістиці та складських послугах.<br/><br/>
-               Ми уважні — у логістичному процесі немає дрібниць.`
-        },
-        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-1427107.jpg?alt=media&token=0119c43c-c6e6-4d18-ab0c-d608028f20e8'
-      },
-      {
-        // Values
-        title: {
-          en: 'Ambition backed by professionalism',
-          ua: 'Амбіції, підкріплені професіоналізмом'
-        },
-        text: {
-          en: `Our ambitions are backed by professionalism, tailored solutions, responsibility, and efficiency.<br/><br/>
-               We stay ahead of changes and help clients reduce risk.`,
-          ua: `Наші амбіції підкріплені професіоналізмом, індивідуальним підходом, відповідальністю та оперативністю.<br/><br/>
-               Ми випереджаємо зміни й допомагаємо клієнтам зменшувати ризики.`
-        },
-        image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-3840441.jpg?alt=media&token=16a66f5d-6969-499f-87b5-b86bd8a89146'
+        title: { en: 'Phone', ua: 'Телефон' },
+        value: '+380634076931'
       }
-    ]
-  }
+    ],
+    emails: [
+      {
+        title: { en: 'Email', ua: 'Електронна пошта' },
+        value: 'info@wohlfahrt.com.ua'
+      }
+    ],
+    address: {
+      title: { en: 'Address', ua: 'Адреса' },
+      value: {
+        en: '04116, Kyiv, Bohdan Havrylyshyn St., 27/29',
+        ua: '04116, м. Київ, вул. Богдана Гаврилишина, б. 27/29'
+      }
+    }
+  },
 };
 
 function rootReducer(state = initialState, action) {
