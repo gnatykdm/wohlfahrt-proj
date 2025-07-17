@@ -9,6 +9,14 @@ import './styles/grid.css';
 import './styles/style.less';
 import './styles/global.less';
 import './styles/buttons.less';
+import './styles/about.less';
+import './styles/advantages.less';
+import './styles/partners.less';
+import './styles/services.less';
+import './styles/contacts.less';
+import './styles/faq.less';
+import './styles/intro.less';
+import './styles/not-found.less';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(

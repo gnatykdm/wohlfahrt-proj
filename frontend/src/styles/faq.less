@@ -1,0 +1,109 @@
+@import './global.less';
+
+.faq-section {
+    background-color: @greyBG;
+    padding: 140px 0;
+    
+    .form-title {
+        .primaryFont(700);
+        color: @blueText;
+        font-size: 30px;
+        margin: 20px 0 40px;
+    }
+    .faq-list {
+        margin-top: 40px;
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding-left: 30px;
+            border-left: 4px solid @primary;
+            max-width: 450px;
+
+            .faq-title {
+                color: @blueText;
+                .primaryFont(700);
+                margin-bottom: 5px;
+                font-size: 20px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+            .faq-text {
+                color: @primaryText;
+                position: relative;
+                overflow: hidden;
+                max-height: 60px;
+
+                &:after {
+                    content: "...";
+                    background-color: @greyBG;
+                    position: absolute;
+                    bottom: 1px;
+                    line-height: 1;
+                    padding-left: 2px;
+                    box-shadow: -5px 0 5px @greyBG;
+                    right: 0;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+    .more-link {
+        color: @primaryText;
+        
+        .fas {
+            margin-left: 10px;
+        }
+    }
+}
+
+.faq-post {
+    margin-bottom: 50px;
+
+    &:first-child {
+        margin-top: 100px;
+    }
+    &:last-child {
+        margin-bottom: 100px;
+    }
+    .faq-post-title {
+        color: @blueText;
+        .primaryFont(800);
+        margin-bottom: 25px;
+        font-size: 24px;
+    }
+    .faq-post-content {
+        padding-left: 30px;
+        border-left: 4px solid @primary;
+
+        p {
+            color: @primaryText;
+            margin-bottom: 15px;
+        }
+        .list {
+            margin-bottom: 15px;
+
+            li {
+                position: relative;
+                padding-left: 20px;
+                margin-bottom: 20px;
+                color: @primaryText;
+                line-height: 2;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 11px;
+                    left: 0;
+                    height: 6px;
+                    width: 6px;
+                    background-color: @primary;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+}

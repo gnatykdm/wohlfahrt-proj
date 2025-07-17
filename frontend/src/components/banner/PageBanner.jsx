@@ -5,8 +5,8 @@ import { Send } from 'react-bootstrap-icons';
 import './PageBanner.less';
 
 export default function PageBanner() {
-  const generalInfo = useSelector(state => state.generalInfo);
-  const lang = useSelector(state => state.selectedLang);
+  const generalInfo = useSelector((state) => state.generalInfo);
+  const lang = useSelector((state) => state.selectedLang);
 
   if (!generalInfo?.banner) return null;
 
@@ -20,16 +20,21 @@ export default function PageBanner() {
         className="bg-right"
         style={{ backgroundImage: `url(${generalInfo.banner.images.right})` }}
       ></div>
+      <div className="overlay"></div>
       <div className="wrapper">
         <div className="banner">
-          <h2 className="title">{generalInfo.banner.title[lang]}</h2>
+          <h2 className="title animate-fade-in">
+            {generalInfo.banner.title[lang]}
+          </h2>
           <div className="actions">
-            <Link to="/contacts" className="btn light">
-              <span className="fas fa-paper-plane"></span>
-              <span>
-                <Send style={{ marginRight: '8px' }} /> 
+            <Link to="/contacts">
+              <button
+                className="btn-text"
+                aria-label={generalInfo.banner.buttonText[lang]}
+              >
+                <Send className="icon" />
                 {generalInfo.banner.buttonText[lang]}
-              </span>
+              </button>
             </Link>
           </div>
         </div>

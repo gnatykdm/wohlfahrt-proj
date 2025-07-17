@@ -1,0 +1,136 @@
+@import './global.less';
+
+.intro-section {
+  position: relative;
+  background-color: @darkGrey;
+  width: 100vw;
+  height: 110vh;
+  min-height: unset; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &:not(.sub-page) {
+    margin-top: -63px;
+  }
+
+  &.sub-page {
+    min-height: unset;
+
+    .bg {
+      right: 50%;
+    }
+    .content {
+      background-color: transparent;
+      margin-left: 50%;
+      padding: 250px 50px;
+    }
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.9;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide:hover .bg {
+    transform: scale(1.05);
+  }
+
+  .content {
+    position: relative;
+    z-index: 3;
+    padding: 50px 0;
+    width: 100%;
+    text-align: left;
+    color: @greyBG;
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .line {
+      margin-bottom: 25px;
+      height: 4px;
+      width: 60px;
+      border-radius: 10px;
+      background-color: @greyBG;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    .intro-title {
+      font-size: @heading-1;
+      .primaryFont(700);
+      color: @greyBG;
+      max-width: 700px;
+      line-height: 1.2;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .actions {
+      margin-top: 35px;
+
+      .btn.light {
+        display: inline-block;
+        padding: 14px 28px;
+        background-color: @greyBG;
+        color: #333;
+        font-weight: 600;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+        &:hover,
+        &:focus {
+          background-color: #f0f0f0;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          transform: translateY(-2px);
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .intro-section {
+    .content {
+      text-align: center;
+      .intro-title {
+        font-size: @heading-1-tablet;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .intro-section {
+    .content {
+      padding: 80px 20px;
+      .intro-title {
+        font-size: @heading-1-mobile;
+      }
+      .intro-text {
+        font-size: 16px;
+      }
+    }
+  }
+}

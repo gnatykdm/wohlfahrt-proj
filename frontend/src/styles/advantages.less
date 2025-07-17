@@ -1,0 +1,112 @@
+@import './global.less';
+
+.advantages-section {
+  padding: 120px 0;
+  background-color: #f9fafc;
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    margin-bottom: 60px;
+    text-align: center;
+
+    .title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: @blueText;
+      letter-spacing: 0.03em;
+    }
+
+    .line {
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, @blueText, @primary);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  .advantages-cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-items: center;
+  }
+
+  .advantages-card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 16px;
+    text-align: center;
+    color: @primaryText;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, @blueText, lighten(@primary, 10%));
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      svg {
+        font-size: 30px;
+      }
+    }
+
+    &:hover .icon {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: @primaryText;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-title .title {
+      font-size: 2.2rem;
+    }
+    .advantages-card {
+      padding: 28px;
+      .icon {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .advantages-card {
+      padding: 25px;
+      .icon {
+        width: 60px;
+        height: 60px;
+        svg {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}

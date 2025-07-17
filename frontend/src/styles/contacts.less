@@ -1,0 +1,44 @@
+@import './global.less';
+
+.contacts-section {
+    padding: 130px 0;
+
+    .section-title {
+        margin-bottom: 50px;
+    }
+
+    .contacts {
+        padding-left: 50px;
+
+        .contact {
+            margin-bottom: 30px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .title {
+                margin-bottom: 10px;
+                color: @blueText;
+                opacity: 0.5;
+            }
+            .value {
+                color: @blueText;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .contacts-section {
+        padding-top: 100px;
+
+        .flex-row-12 {
+            flex-direction: column-reverse;
+        }
+        .contacts {
+            padding-left: 0;
+            margin-bottom: 50px;
+        }
+    }
+}
