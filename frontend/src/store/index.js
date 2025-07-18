@@ -130,7 +130,7 @@ const initialState = {
     },
     text: {
       en: 'Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.',
-      ua: 'ТОВ Вольфарт — молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
+      ua: 'ТОВ «Вольфарт» – молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
     },
     buttonText: {
       en: 'Read more',
@@ -143,10 +143,8 @@ const initialState = {
           ua: 'Хто ми'
         },
         text: {
-          en: `Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.<br/><br/>
-               Our company provides a full range of supply chain management services: warehousing, transportation by all types of transport, customs clearance.`,
-          ua: `ТОВ Вольфарт — молода, швидкозростаюча компанія, універсальний український логістичний оператор.<br/><br/>
-               Наша компанія надає повний комплекс послуг: складування, перевезення всіма видами транспорту, митне оформлення.`
+          en: `Our company provides a full range of supply chain management services: warehousing, transportation by all types of transport, customs clearance. Our employees have many years of experience in the field of international transport logistics and warehouse services. The goal we pursue is to exceed all the expectations of our customers and to satisfy their requests with high quality. We are attentive, and we know that there are no trifles in the logistics process.`,
+          ua: `Наша компанія надає повний комплекс послуг з управління поставками: складування, перевезення всіма видами транспорту, митне оформлення. Наші співробітники мають багаторічний досвід у сфері міжнародної транспортної логістики та складських послуг. Мета, яку ми переслідуємо – це перевершити всі очікування наших клієнтів та якісно задовольнити їхні запити. Ми уважні і знаємо, що в логістичному процесі дрібниць не буває.`
         },
         image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-pixabay-209251.jpg?alt=media&token=243cd620-26bf-4966-9d92-939058031f0d'
       },
@@ -156,10 +154,11 @@ const initialState = {
           ua: 'Досвід та експертиза'
         },
         text: {
-          en: `Our employees have many years of experience in international transport logistics and warehouse services.<br/><br/>
-               We are attentive — there are no little things in logistics.`,
-          ua: `Наші співробітники мають багаторічний досвід у міжнародній транспортній логістиці та складських послугах.<br/><br/>
-               Ми уважні — у логістичному процесі немає дрібниць.`
+          en: `
+
+For years largest retailers highly appreciate our work and trust own logistics to us. Trust your logistics company "Wolfart" and no longer worry about problems with transportation and storage of goods. We will help you improve your well-being !!! (German Wohlfahrt)`,
+          ua: `Нам роками довіряють свою логістику та високо оцінюють нашу роботу найбільші рітейлери. Довірте і Ви свою логістику компанії “Вольфарт” і більше не турбуйтесь про проблеми з перевезенням та складуванням товару.
+               Ми допоможемо покращити Ваш добробут! (Нім. Wohlfahrt)`
         },
         image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-1427107.jpg?alt=media&token=0119c43c-c6e6-4d18-ab0c-d608028f20e8'
       },
@@ -169,17 +168,15 @@ const initialState = {
           ua: 'Амбіції, підкріплені професіоналізмом'
         },
         text: {
-          en: `Our ambitions are backed by professionalism, tailored solutions, responsibility, and efficiency.<br/><br/>
-               We stay ahead of changes and help clients reduce risk.`,
-          ua: `Наші амбіції підкріплені професіоналізмом, індивідуальним підходом, відповідальністю та оперативністю.<br/><br/>
-               Ми випереджаємо зміни й допомагаємо клієнтам зменшувати ризики.`
+          en: `Our ambitions are backed by a high level of professionalism, an individual approach to each assigned task, as well as the responsibility and efficiency of our employees. We keep up with all the changes, develop and often know what will happen tomorrow, than we help to level the risks for the client.`,
+          ua: `Наші амбіції підкріплені високим рівнем професіоналізму, індивідуальним підходом до кожного поставленого завдання, а також відповідальністю та ефективністю співробітників. Ми крокуємо в ногу з усіма змінами, розвиваємося і часто знаємо, що буде завтра, чим допомагаємо нівелювати ризики для клієнта.`
         },
         image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-3840441.jpg?alt=media&token=16a66f5d-6969-499f-87b5-b86bd8a89146'
       },
     ]
   },
   servicesPageContent: {
-    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-pixabay-262353.jpg?alt=media&token=83aa9da0-4ddb-4b69-b90d-56c0209a6cc2', // например, фон для intro-section
+    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-pixabay-262353.jpg?alt=media&token=83aa9da0-4ddb-4b69-b90d-56c0209a6cc2', 
     title: { en: 'Services', ua: 'Послуги' },
     text: {
       en: 'Our company provides transport, customs brokerage and warehouse services',
@@ -206,7 +203,7 @@ const initialState = {
         ]
       },
       {
-        images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-tiger-lily-4481258.jpg?alt=media&token=d88e7112-5b01-431c-bcff-799069d4d4f8' },
+        images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-tima-miroshnichenko-6169052.jpg?alt=media&token=50f72e76-7211-4a19-a222-eac1ed76f261' },
         title: { en: 'Warehouse Services', ua: 'Складські' },
         list: [
           { en: 'Loading and unloading operations (wide range)', ua: 'Вантажно-розвантажувальні роботи (широкий спектр)' },
