@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 import PageBanner from '../../components/banner/PageBanner';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +14,6 @@ export default function AboutPage() {
   const lang = useSelector((state) => state.selectedLang);
   const pageContent = useSelector((state) => state.aboutPageContent);
 
-  // Анимация появления секций
   useEffect(() => {
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver(
@@ -31,13 +31,12 @@ export default function AboutPage() {
     return () => sections.forEach(sec => observer.unobserve(sec));
   }, []);
 
-  // Если нет текстов вообще — ничего не рендерим
   if (!pageContent?.text) return null;
 
   const heroTitle =
     pageContent?.title?.[lang] ??
     pageContent?.buttonText?.[lang] ??
-    ''; // безопасный fallback
+    ''; 
   const heroText = pageContent?.text?.[lang] ?? '';
   const heroBg = pageContent?.bg ?? '';
   const sections = Array.isArray(pageContent?.list) ? pageContent.list : [];
@@ -82,7 +81,7 @@ export default function AboutPage() {
         <div className="about-page-content py-5">
           <div className="container">
             {sections.map((section, index) => {
-              const secTitle = section?.title?.[lang]; // может не быть — ок
+              const secTitle = section?.title?.[lang]; 
               const secText = section?.text?.[lang] || '';
               const secImage = section?.image;
               const reverse = index % 2 === 0 ? 'flex-row-reverse' : '';
@@ -117,7 +116,7 @@ export default function AboutPage() {
             })}
           </div>
         </div>
-
+        <FloatingPhoneButton />
         <PageBanner />
       </div>
 

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FaCheckCircle } from 'react-icons/fa';
+
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
-import { FaCheckCircle } from 'react-icons/fa';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
+
 import './ServicePage.less';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ServicesPage() {
   const lang = useSelector(state => state.selectedLang);
@@ -26,7 +29,7 @@ export default function ServicesPage() {
   const onTabClick = (key) => {
     if (key === activeTab) return;
     setAnimating(true);
-    setImageLoaded(false); // сбрасываем флаг загрузки картинки
+    setImageLoaded(false); 
     setTimeout(() => {
       setActiveTab(key);
       setAnimating(false);
@@ -151,7 +154,8 @@ export default function ServicesPage() {
             )}
           </div>
         </nav>
-
+        
+        <FloatingPhoneButton />
         <PageBanner />
       </main>
 

@@ -1,13 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
+
 import Header from '../../components/header/Header';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
+import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './HomePage.less';
 
 import {
@@ -38,7 +41,6 @@ const HomePage = () => {
     accessibility: false,
   };
 
-  // Используем detailedSections вместо старого list
   const servicesSource =
     servicePageContent.list ||
     servicePageContent.detailedSections ||
@@ -211,6 +213,8 @@ const HomePage = () => {
 
         {/* Page Banner */}
         <PageBanner />
+        {/* Floating Phone Button */}
+        <FloatingPhoneButton />
       </div>
       <Footer />
     </div>
