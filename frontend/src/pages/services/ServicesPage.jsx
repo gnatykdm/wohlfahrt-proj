@@ -6,6 +6,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
+import DeliveryCalc from '../../components/deliverycalc/DeliveryCalc';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 
 import './ServicePage.less';
@@ -154,7 +155,7 @@ export default function ServicesPage() {
             )}
           </div>
         </nav>
-        
+        <DeliveryCalc />
         <FloatingPhoneButton />
         <PageBanner />
       </main>

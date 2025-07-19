@@ -260,6 +260,10 @@ const initialState = {
       en: 'Leave your phone number',
       ua: 'Залиште свій номер телефону'
     },
+    titleModal: {
+      en: 'Leave your phone number – we will call you back within 30 seconds!',
+      ua: 'Залиште свій номер телефону – ми передзвонимо вам протягом 30 секунд!'
+    },
     placeholder: {
       en: '+38 (___) ___-__-__',
       ua: '+38 (___) ___-__-__'
@@ -304,6 +308,70 @@ const initialState = {
       }
     }
   },
+
+
+  deliveryCalcTexts: {
+    title: {
+      en: 'Delivery calculation in 30 minutes',
+      ua: 'Прорахунок доставки за 30 хвилин'
+    },
+    titleButton: {
+      en: 'Calculate',
+      ua: 'Прорахувати'
+    },
+
+    description: {
+      en: 'Enter cargo parameters to get an approximate cost.',
+      ua: 'Введіть параметри вантажу, щоб отримати орієнтовну вартість.'
+    },
+    placeholders: {
+      direction: {
+        en: 'Direction (Kyiv – Lviv)',
+        ua: 'Напрямок (Київ – Львів)'
+      },
+      weight: {
+        en: 'Weight (kg)',
+        ua: 'Вага (кг)'
+      },
+      dimensions: {
+        en: 'Dimensions (e.g. 2m x 1.5m x 1m)',
+        ua: 'Габарити (напр. 2м x 1.5м x 1м)'
+      },
+      cargoType: {
+        en: 'Select cargo type',
+        ua: 'Виберіть тип вантажу'
+      }
+    },
+    cargoTypesOptions: {
+      fragile: { en: 'Fragile', ua: 'Крихкий' },
+      bulk: { en: 'Bulk', ua: 'Насипний' },
+      liquid: { en: 'Liquid', ua: 'Рідкий' },
+      other: { en: 'Other', ua: 'Інший' }
+    },
+    carOptions: {
+      separate: { en: 'Separate vehicle', ua: 'Окреме авто' },
+      additional: { en: 'Additional loading', ua: 'Довантаження' }
+    },
+    submitButton: {
+      en: 'Send',
+      ua: 'Відправити'
+    },
+    errors: {
+      fillAllFields: {
+        en: 'Please fill all the fields',
+        ua: 'Будь ласка, заповніть усі поля'
+      },
+      submitError: {
+        en: 'An error occurred. Please try later.',
+        ua: 'Сталася помилка. Спробуйте пізніше.'
+      }
+    },
+    successMessage: {
+      en: 'Thank you! Your calculation has been sent.',
+      ua: 'Дякуємо! Ваш прорахунок надіслано.'
+    }
+  }
+
 };
 
 function rootReducer(state = initialState, action) {

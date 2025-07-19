@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
+import DeliveryCalc from '../../components/deliverycalc/DeliveryCalc';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 
 import 'slick-carousel/slick/slick.css';
@@ -27,6 +29,7 @@ const HomePage = () => {
   const lang = useSelector((state) => state.selectedLang);
   const pageContent = useSelector((state) => state.homePageContent);
   const servicePageContent = useSelector((state) => state.servicesPageContent);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const sliderSettings = {
     arrows: false,
@@ -49,6 +52,8 @@ const HomePage = () => {
   if (!pageContent?.intro || servicesSource.length === 0) {
     return <div style={{ textAlign: 'center', padding: '50px' }}>Loading...</div>;
   }
+
+  console.log('Modal visible state:', modalVisible);
 
   return (
     <div className="home">
@@ -186,6 +191,8 @@ const HomePage = () => {
           </div>
         </div>
 
+        <DeliveryCalc />
+
         {/* Advantages Section */}
         <div className="advantages-section">
           <div className="wrapper">
@@ -213,8 +220,9 @@ const HomePage = () => {
 
         {/* Page Banner */}
         <PageBanner />
+
         {/* Floating Phone Button */}
-        <FloatingPhoneButton />
+        <FloatingPhoneButton onClick={() => setModalVisible(true)} />
       </div>
       <Footer />
     </div>
