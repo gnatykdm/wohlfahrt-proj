@@ -1,0 +1,101 @@
+@import '../../styles/global.less';
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(32, 50, 62, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.popup-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(32, 50, 62, 0.3);
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  position: relative;
+  text-align: center;
+  color: @primaryText;
+}
+
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: @darkGrey;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: @primary;
+  }
+}
+
+.popup-title {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: @primary;
+}
+
+.icon-phone {
+  color: @primary;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  input[type="tel"] {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1.8px solid @greyBG;
+    color: @blueText;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: @primary;
+      box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+    }
+  }
+
+  .error-message {
+    color: #d93025; 
+    font-size: 0.9rem;
+    text-align: left;
+    margin-top: -0.6rem;
+  }
+
+  .btn-submit {
+    background-color: @primary;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover,
+    &:focus {
+      background-color: darken(@primary, 10%);
+    }
+  }
+}

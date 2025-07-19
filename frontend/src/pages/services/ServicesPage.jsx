@@ -1,53 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
-
+import { FaCheckCircle } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ServicePage.less';
 
 export default function ServicesPage() {
   const lang = useSelector(state => state.selectedLang);
   const pageContent = useSelector(state => state.servicesPageContent);
+  const detailedSections = pageContent?.detailedSections || [];
+
+  const [activeTab, setActiveTab] = useState(
+    detailedSections.length > 0 ? detailedSections[0].key : ''
+  );
+  const [animating, setAnimating] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    const items = document.querySelectorAll('.service-section');
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    items.forEach(item => observer.observe(item));
-    return () => items.forEach(item => observer.unobserve(item));
-  }, []);
+    setActiveTab(detailedSections.length > 0 ? detailedSections[0].key : '');
+  }, [detailedSections]);
+
+  const onTabClick = (key) => {
+    if (key === activeTab) return;
+    setAnimating(true);
+    setImageLoaded(false); // сбрасываем флаг загрузки картинки
+    setTimeout(() => {
+      setActiveTab(key);
+      setAnimating(false);
+    }, 300);
+  };
 
   if (!pageContent?.title) return null;
 
   const heroTitle = pageContent?.title?.[lang] ?? '';
   const heroText = pageContent?.text?.[lang] ?? '';
   const heroBg = pageContent?.bg ?? '';
-  const services = Array.isArray(pageContent?.list) ? pageContent.list : [];
+
+  const activeSection = detailedSections.find(s => s.key === activeTab);
 
   return (
     <div className="services-page">
       <Header />
 
-      <div className="page-content">
-        {/* Intro */}
-        <div
-          className="intro-section sub-page text-center text-white d-flex align-items-center justify-content-center"
-          role="region"
-          aria-label="Services Intro"
+      <main className="page-content">
+        {/* Hero Intro */}
+        <section
+          className="intro-section sub-page d-flex align-items-center justify-content-center text-center text-white"
           style={{ backgroundImage: `url(${heroBg})` }}
+          aria-label="Services Intro"
         >
           <div className="intro-overlay">
             <div className="wrapper fade-in">
@@ -59,81 +62,98 @@ export default function ServicesPage() {
                   dangerouslySetInnerHTML={{ __html: heroText }}
                 />
               )}
-              <div className="actions mt-4">
-                <Link
-                  to="/contacts"
-                  className="btn btn-outline-light btn-lg px-4"
-                  aria-label={pageContent?.buttonText?.[lang] || 'Contacts'}
-                >
-                  <span className="fas fa-paper-plane me-2" aria-hidden="true" />
-                  <span>{pageContent?.buttonText?.[lang]}</span>
-                </Link>
-              </div>
+              <Link
+                to="/contacts"
+                className="btn btn-outline-light btn-lg px-4 mt-4"
+                aria-label={pageContent?.buttonText?.[lang] || 'Contacts'}
+              >
+                <span className="fas fa-paper-plane me-2" aria-hidden="true" />
+                {pageContent?.buttonText?.[lang]}
+              </Link>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Services Sections */}
-        <div className="services-page-content py-5">
-          <div className="container">
-            {services.map((service, index) => {
-              const secTitle = service?.title?.[lang];
-              const secText = service?.text?.[lang] || '';
-              const reverseClass = index % 2 === 0 ? 'flex-row-reverse' : '';
-              const leftImage = service.images?.left;
-              const rightImage = service.images?.right;
-
-              return (
-                <div
-                  key={index}
-                  className={`service-section section mb-5`}
-                  style={{ animationDelay: `${index * 0.25}s` }}
+        {/* Tabs Navigation */}
+        <nav className="services-tabs container my-5" aria-label="Service categories">
+          <ul className="nav nav-tabs justify-content-center" role="tablist">
+            {detailedSections.map(section => (
+              <li className="nav-item" key={section.key} role="presentation">
+                <button
+                  className={`nav-link ${activeTab === section.key ? 'active' : ''}`}
+                  role="tab"
+                  aria-selected={activeTab === section.key}
+                  aria-controls={`tab-${section.key}`}
+                  id={`tab-button-${section.key}`}
+                  type="button"
+                  onClick={() => onTabClick(section.key)}
                 >
-                  <div className={`row align-items-center g-4 ${reverseClass}`}>
-                    {/* Images */}
-                    <div className="col-md-6 text-center">
-                      {leftImage && (
-                        <img
-                          src={leftImage}
-                          alt={`${secTitle} left`}
-                          className="img-fluid rounded shadow-sm zoom-in-img mb-3"
-                        />
-                      )}
-                      {rightImage && (
-                        <img
-                          src={rightImage}
-                          alt={`${secTitle} right`}
-                          className="img-fluid rounded shadow-sm zoom-in-img"
-                        />
-                      )}
-                    </div>
+                  {section.title[lang]}
+                </button>
+              </li>
+            ))}
+          </ul>
 
-                    {/* Text */}
-                    <div className="col-md-6 fade-up-delayed">
-                      {secTitle && <h3 className="h2 fw-bold mb-3">{secTitle}</h3>}
-                      <p
-                        className="text-muted service-text"
-                        dangerouslySetInnerHTML={{ __html: secText }}
-                      />
-                      {Array.isArray(service.list) && (
-                        <ul className="mt-3 service-list">
-                          {service.list.map((item, i) => (
-                            <li key={i} className="text-muted">
-                              {item?.[lang]}
-                            </li>
-                          ))}
-                        </ul>
+          {/* Active Tab Content */}
+          <div
+            className={`tab-content mt-4 shadow-sm rounded bg-white p-4 fade-wrapper ${animating ? 'fade-out' : 'fade-in'}`}
+            role="tabpanel"
+            aria-labelledby={`tab-button-${activeTab}`}
+            tabIndex="0"
+          >
+            {activeSection ? (
+              <div className="tab-pane active">
+                <div className="row align-items-center">
+                  {activeSection.image && (
+                    <div
+                      className="col-lg-5 mb-4 mb-lg-0 d-flex align-items-center justify-content-center"
+                      style={{ minHeight: '250px' }}
+                    >
+                      {!imageLoaded && (
+                        <div className="spinner-border text-primary" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
                       )}
+                      <img
+                        src={activeSection.image}
+                        alt={activeSection.title[lang]}
+                        className={`img-fluid rounded shadow zoom-in-img ${imageLoaded ? 'fade-in-img' : 'd-none'}`}
+                        loading="lazy"
+                        onLoad={() => setImageLoaded(true)}
+                      />
                     </div>
+                  )}
+
+                  <div className={`col-lg-${activeSection.image ? '7' : '12'}`}>
+                    <h3 className="section-title mb-3">{activeSection.title[lang]}</h3>
+                    {activeSection.description && (
+                      <p
+                        className="section-description mb-4"
+                        dangerouslySetInnerHTML={{ __html: activeSection.description[lang] }}
+                      />
+                    )}
+
+                    {activeSection.list && (
+                      <ul className="list-unstyled service-list">
+                        {activeSection.list.map((item, i) => (
+                          <li key={i} className="d-flex align-items-center mb-3">
+                            <FaCheckCircle className="check-icon me-3" aria-hidden="true" />
+                            <span>{item[lang]}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ) : (
+              <p>Содержимое отсутствует</p>
+            )}
           </div>
-        </div>
+        </nav>
 
         <PageBanner />
-      </div>
+      </main>
 
       <Footer />
     </div>

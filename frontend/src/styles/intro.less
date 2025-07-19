@@ -28,16 +28,49 @@
     }
   }
 
+
   .bg {
     position: absolute;
     inset: 0;
     z-index: 1;
     opacity: 0.9;
     transition: transform 0.5s ease-in-out;
+    image-rendering: auto;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-origin: center center;
+  }
+
+  .bg-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+    transition: transform 8s ease-in-out;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .bg-wrapper:hover .bg-image {
+    transform: scale(1.03);
+  }
+
+  .bg-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
   }
 
   .slide:hover .bg {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
   .content {

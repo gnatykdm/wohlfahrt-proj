@@ -69,7 +69,7 @@ const initialState = {
           image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FHome%2Fintro-bg.png?alt=media&token=3c9b8a19-1f27-47b4-84dd-9a5cf3c373e9',
           title: {
             en: 'Delivery you’ll want to repeat for sure',
-            ua: 'Доставка, яку ви побажаєте повторити'
+            ua: 'Доставка, яку ви забажаєте повторити'
           },
           buttonLink: '/contacts',
           buttonText: {
@@ -87,7 +87,7 @@ const initialState = {
       },
       text: {
         en: 'Wohlfahrt LLC is a young, rapidly developing, universal Ukrainian logistics operator. Our company provides a full range of supply chain management services: warehousing, transportation by all types of transport, customs clearance.',
-        ua: 'ТОВ Вольфарт - молода компанія, що швидко розвивається, універсальний український логістичний оператор. Наша компанія надає повний комплекс послуг з управління ланцюжками поставок: складування, перевезення всіма видами транспорту, митне оформлення.'
+        ua: 'Wohlfahrt - молода компанія, що швидко розвивається, універсальний український логістичний оператор. Наша компанія надає повний комплекс послуг з управління ланцюжками поставок: складування, перевезення всіма видами транспорту, митне оформлення.'
       },
       buttonText: {
         en: 'Learn More',
@@ -130,7 +130,7 @@ const initialState = {
     },
     text: {
       en: 'Wolfart LLC is a young fast-growing company, a universal Ukrainian logistics operator.',
-      ua: 'ТОВ «Вольфарт» – молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
+      ua: 'Wohlfahrt – молода компанія, що швидко розвивається, універсальний український логістичний оператор.'
     },
     buttonText: {
       en: 'Read more',
@@ -154,10 +154,8 @@ const initialState = {
           ua: 'Досвід та експертиза'
         },
         text: {
-          en: `
-
-For years largest retailers highly appreciate our work and trust own logistics to us. Trust your logistics company "Wolfart" and no longer worry about problems with transportation and storage of goods. We will help you improve your well-being !!! (German Wohlfahrt)`,
-          ua: `Нам роками довіряють свою логістику та високо оцінюють нашу роботу найбільші рітейлери. Довірте і Ви свою логістику компанії “Вольфарт” і більше не турбуйтесь про проблеми з перевезенням та складуванням товару.
+          en: `For years largest retailers highly appreciate our work and trust own logistics to us. Trust your logistics company "Wolfart" and no longer worry about problems with transportation and storage of goods. We will help you improve your well-being !!! (German Wohlfahrt)`,
+          ua: `Нам роками довіряють свою логістику та високо оцінюють нашу роботу найбільші рітейлери. Довірте і Ви свою логістику компанії “Wohlfahrt” і більше не турбуйтесь про проблеми з перевезенням та складуванням товару.
                Ми допоможемо покращити Ваш добробут! (Нім. Wohlfahrt)`
         },
         image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FAbout%2Fpexels-tom-fisk-1427107.jpg?alt=media&token=0119c43c-c6e6-4d18-ab0c-d608028f20e8'
@@ -175,46 +173,111 @@ For years largest retailers highly appreciate our work and trust own logistics t
       },
     ]
   },
-  servicesPageContent: {
-    bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-pixabay-262353.jpg?alt=media&token=83aa9da0-4ddb-4b69-b90d-56c0209a6cc2', 
-    title: { en: 'Services', ua: 'Послуги' },
-    text: {
-      en: 'Our company provides transport, customs brokerage and warehouse services',
-      ua: 'Наша компанія надає транспортні, митно-брокерські та складські послуги'
-    },
-    buttonText: { en: 'Learn more', ua: 'Дізнатись більше' },
-    list: [
-      {
-        images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-kai-pilger-1544372.jpg?alt=media&token=97496a07-1a7b-411e-ad3f-24fcbf9f2b31' },
-        title: { en: 'Transport Services', ua: 'Транспортні' },
-        list: [
-          { en: 'Transportation within Ukraine', ua: 'Перевезення по Україні' },
-          { en: 'International transportation', ua: 'Міжнародні перевезення' },
-          { en: 'Cargo insurance', ua: 'Страхування вантажу' },
-          { en: 'Legal support', ua: 'Юридичне супроводження' }
-        ]
-      },
-      {
-        images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-oleg-magni-2058136.jpg?alt=media&token=76b20999-d7b5-4973-ae1f-0681d79b47bc' },
-        title: { en: 'Customs Brokerage Services', ua: 'Митно-брокерські' },
-        list: [
-          { en: 'Customs brokerage services', ua: 'Митно-брокерське оформлення' },
-          { en: 'Cargo documentation', ua: 'Оформлення документів на вантаж' }
-        ]
-      },
-      {
-        images: { left: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-tima-miroshnichenko-6169052.jpg?alt=media&token=50f72e76-7211-4a19-a222-eac1ed76f261' },
-        title: { en: 'Warehouse Services', ua: 'Складські' },
-        list: [
-          { en: 'Loading and unloading operations (wide range)', ua: 'Вантажно-розвантажувальні роботи (широкий спектр)' },
-          { en: 'Piece-by-piece and quality cargo acceptance', ua: 'Прийом вантажів штучно та якісно' },
-          { en: 'Cargo sorting and selection', ua: 'Сортування та відбір вантажів' },
-          { en: 'Cargo storage', ua: 'Зберігання вантажів' },
-          { en: 'Cargo stitching', ua: 'Стікування вантажів' }
-        ]
-      }
-    ]
+ servicesPageContent: {
+  bg: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-pixabay-262353.jpg?alt=media&token=83aa9da0-4ddb-4b69-b90d-56c0209a6cc2', 
+  title: { en: 'Services', ua: 'Послуги' },
+  text: {
+    en: 'Our company provides transport, customs brokerage and warehouse services',
+    ua: 'Наша компанія надає транспортні, митно-брокерські та складські послуги'
   },
+  buttonText: { en: 'Learn more', ua: 'Дізнатись більше' },
+  
+  detailedSections: [
+    {
+      key: 'china',
+      title: { en: 'Delivery from China', ua: 'Доставка з Китаю' },
+      image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-kai-pilger-1544372.jpg?alt=media&token=97496a07-1a7b-411e-ad3f-24fcbf9f2b31',
+      list: [
+        { en: 'Product search', ua: 'пошук товару' },
+        { en: 'Factory inspection', ua: 'перевірка фабрик' },
+        { en: 'Quality control', ua: 'контроль якості' },
+        { en: 'Transportation within China', ua: 'транспортування по Китаю' },
+        { en: 'Local port operations', ua: 'локальні роботи в порту' },
+        { en: 'Document preparation', ua: 'оформлення документів' },
+      ]
+    },
+    {
+      key: 'europe',
+      title: { en: 'Delivery from Europe', ua: 'Доставка з Європи' },
+      image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-tima-miroshnichenko-6169052.jpg?alt=media&token=50f72e76-7211-4a19-a222-eac1ed76f261',
+      list: [
+        { en: 'Product search', ua: 'пошук товару' },
+        { en: 'Communication with manufacturers', ua: 'комунікація з виробниками' },
+        { en: 'Expedition across Europe', ua: 'експедиція по Європі' },
+        { en: 'Customs brokerage services', ua: 'митно-брокерські послуги' },
+        { en: 'Warehousing and cargo consolidation', ua: 'складування і консолідація вантажів' },
+      ]
+    },
+    {
+      key: 'otherRegions',
+      title: { en: 'Delivery from other regions', ua: 'Доставка з інших регіонів' },
+      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.AVI88De1n14ssbHZrzvHtAHaEK%3Fpid%3DApi&f=1&ipt=6867d04bcdfe641be1bfbc606e185336b8e4bb7078b00c92a49522e29d4ecc9b&ipo=images',
+      list: [
+        { en: 'Asia (except China)', ua: 'Азія (крім Китаю)' },
+        { en: 'Middle East', ua: 'Близький Схід' },
+        { en: 'USA / America', ua: 'США / Америка' },
+      ]
+    },
+    {
+      key: 'transportTypes',
+      title: { en: 'Types of transport services', ua: 'Типи транспортних послуг' },
+      image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-malte-luk-3307415.jpg?alt=media&token=99e65b88-e0a6-4aad-ac04-8c4c418d37a1',
+      list: [
+        { en: 'Container transportation', ua: 'контейнерні перевезення' },
+        { en: 'Air transportation', ua: 'авіа перевезення' },
+        { en: 'Road transportation within Europe', ua: 'автоперевезення по Європі' },
+        { en: 'Road transportation from Europe to Ukraine', ua: 'автоперевезення з Європи в Україну' },
+      ]
+    },
+    {
+      key: 'logistics',
+      title: { en: 'Other logistics and related services', ua: 'Інші логістичні та супутні послуги' },
+      image: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FServices%2Fpexels-oleg-magni-2058136.jpg?alt=media&token=76b20999-d7b5-4973-ae1f-0681d79b47bc',
+      list: [
+        { en: 'Brokerage services in Poland and Ukraine', ua: 'брокерські послуги в Польщі та Україні' },
+        { en: 'Cargo insurance', ua: 'страхування вантажу' },
+        { en: 'Cargo consolidation', ua: 'консолідація вантажу' },
+        { en: 'Import optimization', ua: 'оптимізація імпорту' },
+        { en: 'Turnkey delivery', ua: 'доставка під ключ' },
+      ]
+    },
+    {
+      key: 'regionsInfo',
+      title: { en: 'Regions of delivery', ua: 'Регіони доставки' },
+      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.v6YEADGqxHp6MrU6TygeHQHaEO%3Fpid%3DApi&f=1&ipt=da2bbe6b84a9cbb9513c98f7cd58775ed16c0b6bd93a3dab42998fe225bd1096&ipo=images',
+      list: [
+        { en: 'Europe', ua: 'Європа' },
+        { en: 'Asian countries', ua: 'країни Азії' },
+        { en: 'Middle East', ua: 'Близький Схід' },
+        { en: 'USA (on demand)', ua: 'США (за потреби підтвердити)' },
+      ]
+    },
+  ]
+},
+
+  phonePopupTexts: {
+    title: {
+      en: 'Leave your phone number',
+      ua: 'Залиште свій номер телефону'
+    },
+    placeholder: {
+      en: '+38 (___) ___-__-__',
+      ua: '+38 (___) ___-__-__'
+    },
+    submitButton: {
+      en: 'Send',
+      ua: 'Відправити'
+    },
+    error: {
+      en: 'Please enter a valid phone number',
+      ua: 'Будь ласка, введіть коректний номер телефону'
+    },
+    successMessage: {
+      en: 'Thank you! We will contact you soon.',
+      ua: 'Дякуємо! Ми скоро з вами зв’яжемося.'
+    }
+  },
+
 
    contactsPageContent: {
     title: {

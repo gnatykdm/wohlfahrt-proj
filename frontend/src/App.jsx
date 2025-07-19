@@ -9,6 +9,7 @@ import Services from './pages/services/ServicesPage';
 import Faq from './pages/faq/FaqPage';
 import Contacts from './pages/contacts/ContactPage';
 import NotFound from './pages/404/NotFoundPage';
+import PhonePopup from './components/phone-pop-up/PhonePopUp';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <PhonePopup />
     </Router>
   );
 }
