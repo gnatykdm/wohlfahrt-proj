@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { TelephoneFill, X } from 'react-bootstrap-icons';
+import axios from 'axios';
 import './PhonePopUp.less';
 
 export default function PhonePopup() {
@@ -9,7 +10,9 @@ export default function PhonePopup() {
 
   const [visible, setVisible] = useState(false);
   const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,18 +21,44 @@ export default function PhonePopup() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleClose = () => setVisible(false);
+  const handleClose = () => {
+    setVisible(false);
+    setError('');
+    setSuccess('');
+    setPhone('');
+    setName('');
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const phoneRegex = /^\+?\d{7,15}$/;
+    if (!name.trim()) {
+      setError(texts.nameError ? texts.nameError[lang] : "Name is required");
+      setSuccess('');
+      return;
+    }
     if (!phoneRegex.test(phone)) {
       setError(texts.error[lang]);
+      setSuccess('');
       return;
     }
     setError('');
-    alert(texts.successMessage[lang]);
-    setVisible(false);
+    setSuccess('');
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/feedback-call', { name: name.trim(), phone });
+      if (response.status === 200 && response.data.status === 'success') {
+        setSuccess(texts.successMessage[lang]);
+        setPhone('');
+        setName('');
+        setTimeout(() => setVisible(false), 3000);
+      } else {
+        setError(texts.error[lang]);
+      }
+    } catch (err) {
+      setError(texts.error[lang]);
+      console.error(err);
+    }
   };
 
   if (!visible) return null;
@@ -49,6 +78,15 @@ export default function PhonePopup() {
         </h2>
         <form onSubmit={handleSubmit} className="popup-form" noValidate>
           <input
+            type="text"
+            placeholder={texts.namePlaceholder ? texts.namePlaceholder[lang] : (lang === 'ua' ? 'Ім’я' : 'Name')}
+            value={name}
+            onChange={e => setName(e.target.value)}
+            aria-invalid={!!error}
+            required
+            disabled={success !== ''}
+          />
+          <input
             type="tel"
             placeholder={texts.placeholder[lang]}
             value={phone}
@@ -56,9 +94,11 @@ export default function PhonePopup() {
             aria-invalid={!!error}
             aria-describedby="phoneError"
             required
+            disabled={success !== ''}
           />
           {error && <div id="phoneError" className="error-message">{error}</div>}
-          <button type="submit" className="btn-submit">
+          {success && <div className="success-message">{success}</div>}
+          <button type="submit" className="btn-submit" disabled={success !== ''}>
             {texts.submitButton[lang]}
           </button>
         </form>

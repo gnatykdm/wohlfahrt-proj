@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { GeoAlt, BoxSeam, ArrowRightCircle, Truck, ArrowDown } from 'react-bootstrap-icons';
+import { GeoAlt, BoxSeam, ArrowRightCircle, Truck, ArrowDown, Telephone } from 'react-bootstrap-icons';
 import './DeliveryCalc.less';
 
 export default function DeliveryCalc() {
@@ -12,9 +12,11 @@ export default function DeliveryCalc() {
   const [weight, setWeight] = useState('');
   const [dimensions, setDimensions] = useState('');
   const [cargoType, setCargoType] = useState('');
-  const [isSeparateCar, setIsSeparateCar] = useState('separate');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [carOption, setCarOption] = useState('separate'); // поменял имя для унификации с API — car_option
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const openModal = () => {
     setModalVisible(true);
@@ -25,27 +27,59 @@ export default function DeliveryCalc() {
     setModalVisible(false);
     setError('');
     setSuccess('');
+    setLoading(false);
     localStorage.setItem('deliveryCalcModal', 'closed');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!direction || !weight || !dimensions || !cargoType) {
+    if (!direction || !weight || !dimensions || !cargoType || !phoneNumber) {
       setError(texts.errors.fillAllFields[lang]);
       setSuccess('');
       return;
     }
     setError('');
+    setLoading(true);
+
+    const payload = {
+      direction,
+      weight: parseFloat(weight),
+      dimension: parseFloat(dimensions),
+      cargo_type: cargoType,
+      car_option: carOption,
+      phone_number: phoneNumber,
+    };
+
     try {
-      setSuccess(texts.successMessage[lang]);
-      setDirection('');
-      setWeight('');
-      setDimensions('');
-      setCargoType('');
-      setIsSeparateCar('separate');
-    } catch {
-      setError(texts.errors.submitError[lang]);
-      setSuccess('');
+      const response = await fetch('http://127.0.0.1:5000/calc-delivery', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        setSuccess(texts.successMessage[lang]);
+        setDirection('');
+        setWeight('');
+        setDimensions('');
+        setCargoType('');
+        setPhoneNumber('');
+        setCarOption('separate');
+      } else {
+        setError(texts.errors.submitError[lang]);
+      }
+    } catch (err) {
+      setError(`${texts.errors.submitError[lang]} (${err.message})`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,6 +99,7 @@ export default function DeliveryCalc() {
           onClick={openModal}
           aria-haspopup="dialog"
           aria-expanded={modalVisible}
+          disabled={loading}
         >
           {texts.titleButton[lang]} <ArrowRightCircle className="btn-icon" />
         </button>
@@ -86,6 +121,7 @@ export default function DeliveryCalc() {
               className="modal-close"
               onClick={closeModal}
               aria-label="Close"
+              disabled={loading}
             >
               &times;
             </button>
@@ -99,6 +135,7 @@ export default function DeliveryCalc() {
                   value={direction}
                   onChange={(e) => setDirection(e.target.value)}
                   required
+                  disabled={loading}
                 />
               </label>
               <label>
@@ -111,6 +148,7 @@ export default function DeliveryCalc() {
                   required
                   min="0"
                   step="any"
+                  disabled={loading}
                 />
               </label>
               <label>
@@ -121,6 +159,18 @@ export default function DeliveryCalc() {
                   value={dimensions}
                   onChange={(e) => setDimensions(e.target.value)}
                   required
+                  disabled={loading}
+                />
+              </label>
+              <label>
+                <Telephone className="icon" />
+                <input
+                  type="tel"
+                  placeholder={texts.placeholders.phoneNumber[lang]}
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  required
+                  disabled={loading}
                 />
               </label>
               <label className="custom-select-wrapper">
@@ -128,6 +178,7 @@ export default function DeliveryCalc() {
                   value={cargoType}
                   onChange={(e) => setCargoType(e.target.value)}
                   required
+                  disabled={loading}
                 >
                   <option value="" disabled>
                     {texts.placeholders.cargoType[lang]}
@@ -151,8 +202,9 @@ export default function DeliveryCalc() {
                       type="radio"
                       name="carOption"
                       value="separate"
-                      checked={isSeparateCar === 'separate'}
-                      onChange={(e) => setIsSeparateCar(e.target.value)}
+                      checked={carOption === 'separate'}
+                      onChange={(e) => setCarOption(e.target.value)}
+                      disabled={loading}
                     />
                     <span className="custom-radio" />
                     {texts.carOptions.separate[lang]}
@@ -162,8 +214,9 @@ export default function DeliveryCalc() {
                       type="radio"
                       name="carOption"
                       value="additional"
-                      checked={isSeparateCar === 'additional'}
-                      onChange={(e) => setIsSeparateCar(e.target.value)}
+                      checked={carOption === 'additional'}
+                      onChange={(e) => setCarOption(e.target.value)}
+                      disabled={loading}
                     />
                     <span className="custom-radio" />
                     {texts.carOptions.additional[lang]}
@@ -173,8 +226,9 @@ export default function DeliveryCalc() {
 
               {error && <div className="form-error">{error}</div>}
               {success && <div className="form-success">{success}</div>}
-              <button type="submit" className="submit-btn">
-                {texts.submitButton[lang]}
+
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? texts.loadingMessage[lang] || 'Loading...' : texts.submitButton[lang]}
               </button>
             </form>
           </div>

@@ -28,10 +28,22 @@ export default function ContactForm() {
 
     setIsFormError(false);
     setFormSendInProcess(true);
+    setIsMailSendError(false);
+    setIsMailSended(false);
 
     try {
-      await axios.post('#', form); // placeholder for your real endpoint
-      setIsMailSended(true);
+      const response = await axios.post('http://127.0.0.1:5000/message', form, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200 && response.data.status === 'success') {
+        setIsMailSended(true);
+        setForm({ name: '', email: '', phone: '', msg: '' });
+      } else {
+        throw new Error('Server responded with error');
+      }
     } catch (err) {
       setIsMailSendError(true);
       console.error(err);
@@ -60,6 +72,7 @@ export default function ContactForm() {
               value={form.name}
               onChange={handleInputChange}
               required
+              disabled={formSendInProcess}
             />
             <div className="error-label">This field is required</div>
           </div>
@@ -71,6 +84,7 @@ export default function ContactForm() {
               value={form.phone}
               onChange={handleInputChange}
               required
+              disabled={formSendInProcess}
             />
             <div className="error-label">This field is required</div>
           </div>
@@ -82,6 +96,7 @@ export default function ContactForm() {
               value={form.email}
               onChange={handleInputChange}
               required
+              disabled={formSendInProcess}
             />
             <div className="error-label">This field is required</div>
           </div>
@@ -92,10 +107,15 @@ export default function ContactForm() {
               value={form.msg}
               onChange={handleInputChange}
               required
+              disabled={formSendInProcess}
             />
             <div className="error-label">This field is required</div>
           </div>
-          <button className={`btn ${formSendInProcess ? 'loading' : ''}`} onClick={sendMail}>
+          <button
+            className={`btn ${formSendInProcess ? 'loading' : ''}`}
+            onClick={sendMail}
+            disabled={formSendInProcess}
+          >
             <div className="loader line-scale-pulse-out">
               <div></div><div></div><div></div><div></div><div></div>
             </div>
