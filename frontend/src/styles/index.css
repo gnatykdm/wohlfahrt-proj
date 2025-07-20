@@ -56,11 +56,12 @@ button:focus-visible {
 }
 
 select {
-  color: #20323E;        
-  background-color: #E2E6E9; 
+  color: #f9f9f9;        
+  background-color: #20323E; 
   border: 1.5px solid #20323E; 
   border-radius: 6px;  
   padding: 8px 12px;
+  width: 100%;
   font-size: 14px;
   appearance: none;      
   -webkit-appearance: none;

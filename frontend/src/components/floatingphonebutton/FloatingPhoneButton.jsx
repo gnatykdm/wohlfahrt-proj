@@ -10,10 +10,12 @@ const FloatingPhoneButton = () => {
 
   const handleClick = () => {
     setModalVisible(true);
+    localStorage.setItem('deliveryCalcModal', 'open');
   };
 
   const handleClose = () => {
     setModalVisible(false);
+    localStorage.setItem('deliveryCalcModal', 'closed');
   };
 
   return (

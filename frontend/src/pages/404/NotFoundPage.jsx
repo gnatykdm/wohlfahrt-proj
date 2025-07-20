@@ -1,23 +1,25 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NotFoundPage.less';
 import NotFoundImage from '../../assets/img/404.png';
 
 const NotFoundPage = () => {
-    return (
-        <div class="page-content">
-            <div className="not-found-section">
-                <div className="wrapper">
-                    <img className="image" src={NotFoundImage} alt="Page Not Found" />
-                    <h1 className="title">Страница не найдена</h1>
-                    <div className="actions">
-                        <router-link className="btn-primary" to="/">
-                            <span className="fas fa-home"></span>
-                            <span>На главную</span>
-                        </router-link>
-                    </div>
-                </div>      
-            </div>
+  const navigate = useNavigate();
+
+  return (
+    <div className="notfound-page-content">
+      <div className="notfound-section">
+        <div className="notfound-wrapper">
+          <img className="notfound-image" src={NotFoundImage} alt="Page Not Found" />
+          <h1 className="notfound-title">Ooops! Page Not Found</h1>
+          <p className="notfound-subtitle">Sorry, the page you are looking for does not exist.</p>
+          <button className="notfound-btn-primary" onClick={() => navigate(-1)}>
+            ← Back
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default NotFoundPage;

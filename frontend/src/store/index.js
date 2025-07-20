@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import FaqPage from '../pages/faq/FaqPage';
 
 const initialState = {
   selectedLang: 'en',
@@ -309,6 +310,56 @@ const initialState = {
     }
   },
 
+  faqPageContent: {
+    title : {
+      en: 'FAQ',
+      ua: 'Питання'
+    },
+    bgImage: 'https://firebasestorage.googleapis.com/v0/b/wohlfahrt-e69c4.appspot.com/o/Pages%2FFAQ%2Fpexels-fauxels-3184639.jpg?alt=media&token=bc5a71a3-4445-41b0-a3fb-cb616f2dc7f6',
+    description: {
+      en: "Answers to your most common questions.",
+      ua: 'Відповіді на найпоширеніші питання.'
+    },
+    buttonText: {
+      en: 'Services',
+      ua: 'Послуги'
+    },
+    section1: {
+      title: { en: "How to order a service?", ua: "Як замовити послугу?"},
+      content: {
+        en: "You can order the service by calling +380672491638, sending us an e-mail corp@wohlfahrt.com.ua or visiting our office in Kyiv.",
+        ua: "Послугу Ви можете замовити зателефонувавши за номером +380672491638, повідомленням нам на e-mail corp@wohlfahrt.com.ua або приїхати до нашого офісу в м. Київ."
+      }
+    },
+    section2: {
+      title: { en: "How to send a cargo by a transport company?", ua: "Як відправити вантаж транспортною компанією?" },
+      content: {
+        en: "If you want to hand over the goods yourself to the warehouse, the transportation procedure will be as follows: - the goods that meet the requirements for transportation are accepted at the warehouse by Wolfarth specialists, weighed, marked, additionally packed if necessary - a bill of lading is drawn up. - the cargo is dispatched to the city of receipt according to the schedule of transport between the terminals - upon arrival of the cargo at the Forwarder's terminal in the city of receipt, our managers notify the client, clarify payment options, and, if desired, arrange delivery to the door. If you cannot bring us the goods yourself, we can arrange a pick-up service in the city of dispatch.",
+        ua: "Якщо ви хочете здати вантаж на склад самостійно, процедура транспортування буде такою: - вантаж, що відповідає вимогам до перевезень, приймається на складі фахівцями Вольфарт, зважується, маркується, за потребою додатково упаковується - оформлюється транспортна накладна. - провадиться відправка вантажу до міста отримання за графіком курсування транспорту між терміналами - після прибуття вантажу на термінал Експедитора до міста отримання, наші менеджери сповіщають клієнта, уточнюють варіанти оплати, та за бажанням організовують доставку до дверей. Якщо ви не можете привезти нам вантаж самостійно, ми можемо організувати послугу забору вантажу у місті відправлення."
+      }
+    },
+    section3: {
+      title: { en: "What is required to complete an application for cargo transportation?", ua: "Що потрібно для оформлення заявки на вантажоперевезення?" },
+      content: {
+        en: "Before sending the cargo, you need to have the following information to fill out an application for cargo transportation: - the name of the payer, sender and recipient, as well as their addresses (location) and telephone number - information about the cargo and its special properties - approximate weight, number of places and dimensions of the cargo - cost cargo - the estimated date of delivery of the cargo to the Forwarder's warehouse or the date of picking up the cargo from the Sender.",
+        ua: "Перед відправкою вантажу Вам для заповнення заявки на вантажоперевезення необхідно мати таку інформацію: - найменування платника, відправника та одержувача, а також їх адреси (місця розташування) та телефони - відомості про вантаж та його особливі властивості - орієнтовна вага, кількість місць та габарити вантажу - вартість вантажу - передбачувана дата здачі вантажу на склад Експедитора або дата забору вантажу від Відправника."
+      }
+    },
+    section4: {
+      title: { en: "How do I know the condition of my cargo while it is in transit?", ua: "Як мені дізнатися про стан мого вантажу, коли він у дорозі?" },
+      content: {
+        en: "Just contact our managers - and they will provide you with the most up-to-date and complete information about the location and condition of your cargo.",
+        ua: "Просто зв'яжіться з нашими менеджерами – і вони повідомлять вам найактуальнішу та повну інформацію про місцезнаходження та стан вашого вантажу."
+      }
+    },
+    section5: {
+      title: { en: "How do you know that the cargo has been delivered?", ua: "Як дізнатися, що вантаж доставлено?" },
+      content: {
+        en: "Our managers will contact you when the cargo is ready for delivery.",
+        ua: "Наші менеджери зв'яжуться з Вами, коли вантаж буде готовий до видачі."
+      }
+    },
+  },
 
   deliveryCalcTexts: {
     title: {
@@ -319,7 +370,6 @@ const initialState = {
       en: 'Calculate',
       ua: 'Прорахувати'
     },
-
     description: {
       en: 'Enter cargo parameters to get an approximate cost.',
       ua: 'Введіть параметри вантажу, щоб отримати орієнтовну вартість.'

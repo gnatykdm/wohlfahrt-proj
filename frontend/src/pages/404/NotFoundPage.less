@@ -1,37 +1,101 @@
 @import '../../styles/global.less';
 
-.not-found-section {
-    padding: 100px 0;
-    justify-content: center;
-    align-items: center;
-
-    .image {
-        display: block;
-        margin: 0 auto;
-        max-width: 600px;
-    }
-    .title {
-        margin-top: 30px;
-        text-align: center;
-        font-size: 30px;
-        .primaryFont(800);
-        color: @blueText;
-    }
-    .actions {
-        margin-top: 30px;
-        text-align: center;
-    }
+.notfound-page-content {
+  height: 100vh;         
+  width: 100vw;         
+  display: flex;
+  align-items: center;   
+  justify-content: center; 
+  background-color: #fafafa;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;             
+  overflow: hidden;      
 }
 
-@media (max-width: 600px) {
-    .not-found-section {
-        padding: 150px 0;
-        
-        .image {
-            width: 100%;
-        }
-        .title {
-            font-size: 22px;
-        }
+.notfound-section {
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  background: @greyBG;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  user-select: none;
+
+  .notfound-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .notfound-image {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    user-select: none;
+  }
+
+  .notfound-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+  }
+
+  .notfound-subtitle {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin: 0;
+  }
+
+  .notfound-btn-primary {
+    background-color: @primary;
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(52, 144, 220, 0.35);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: darken(@primary, 10%);
+      box-shadow: 0 12px 28px rgba(39, 121, 189, 0.5);
     }
+
+    &:active {
+      background-color: lighten(@primary, 5%);
+      box-shadow: 0 6px 16px rgba(28, 93, 139, 0.6);
+      transform: scale(0.97);
+    }
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .notfound-section {
+    padding: 30px 20px;
+
+    .notfound-title {
+      font-size: 2.2rem;
+    }
+
+    .notfound-subtitle {
+      font-size: 1rem;
+    }
+
+    .notfound-image {
+      max-width: 150px;
+    }
+
+    .notfound-btn-primary {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
+  }
 }

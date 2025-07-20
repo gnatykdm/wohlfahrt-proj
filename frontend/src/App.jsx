@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async'; 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles/App.css';
 
+import ScrollToTop from './ScrollToTop';
 import Home from './pages/home/HomePage';
 import About from './pages/about/AboutPage';
 import Services from './pages/services/ServicesPage';
@@ -12,8 +13,13 @@ import NotFound from './pages/404/NotFoundPage';
 import PhonePopup from './components/phone-pop-up/PhonePopUp';
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem('deliveryCalcModal', 'closed');
+  }, []);
+
   return (
     <Router>
+      <ScrollToTop />
       <Helmet>
         <title>Wohlfahrt</title>
         <meta charSet='UTF-8' />

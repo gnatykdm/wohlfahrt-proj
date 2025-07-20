@@ -16,11 +16,16 @@ export default function DeliveryCalc() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const openModal = () => setModalVisible(true);
+  const openModal = () => {
+    setModalVisible(true);
+    localStorage.setItem('deliveryCalcModal', 'open');
+  };
+
   const closeModal = () => {
     setModalVisible(false);
     setError('');
     setSuccess('');
+    localStorage.setItem('deliveryCalcModal', 'closed');
   };
 
   const handleSubmit = (e) => {
@@ -32,8 +37,6 @@ export default function DeliveryCalc() {
     }
     setError('');
     try {
-      // TODO: відправка даних
-
       setSuccess(texts.successMessage[lang]);
       setDirection('');
       setWeight('');
@@ -56,6 +59,7 @@ export default function DeliveryCalc() {
             <p>{texts.description[lang]}</p>
           </div>
         </div>
+        <div className="spacer"></div>
         <button
           className="btn btn-primary"
           onClick={openModal}
@@ -119,7 +123,7 @@ export default function DeliveryCalc() {
                   required
                 />
               </label>
-              <label>
+              <label className="custom-select-wrapper">
                 <select
                   value={cargoType}
                   onChange={(e) => setCargoType(e.target.value)}
@@ -128,39 +132,45 @@ export default function DeliveryCalc() {
                   <option value="" disabled>
                     {texts.placeholders.cargoType[lang]}
                   </option>
-                    {Object.entries(texts.cargoTypesOptions).map(([key, val]) => (
+                  {Object.entries(texts.cargoTypesOptions).map(([key, val]) => (
                     <option key={key} value={key}>
                       {val[lang]}
                     </option>
                   ))}
                 </select>
-                <ArrowDown /> 
+                <ArrowDown className="select-arrow" />
               </label>
+
               <fieldset className="car-option">
-                <legend>{texts.carOptions.separate[lang]} / {texts.carOptions.additional[lang]}</legend>
-                <label>
-                  <input
-                    type="radio"
-                    name="carOption"
-                    value="separate"
-                    checked={isSeparateCar === 'separate'}
-                    onChange={(e) => setIsSeparateCar(e.target.value)}
-                  />
-                  <span className="custom-radio" />
-                  {texts.carOptions.separate[lang]}
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="carOption"
-                    value="additional"
-                    checked={isSeparateCar === 'additional'}
-                    onChange={(e) => setIsSeparateCar(e.target.value)}
-                  />
-                  <span className="custom-radio" />
-                  {texts.carOptions.additional[lang]}
-                </label>
+                <legend className="option-title">
+                  {texts.carOptions.separate[lang]} / {texts.carOptions.additional[lang]}
+                </legend>
+                <div className="radio-group">
+                  <label className="custom-radio-label">
+                    <input
+                      type="radio"
+                      name="carOption"
+                      value="separate"
+                      checked={isSeparateCar === 'separate'}
+                      onChange={(e) => setIsSeparateCar(e.target.value)}
+                    />
+                    <span className="custom-radio" />
+                    {texts.carOptions.separate[lang]}
+                  </label>
+                  <label className="custom-radio-label">
+                    <input
+                      type="radio"
+                      name="carOption"
+                      value="additional"
+                      checked={isSeparateCar === 'additional'}
+                      onChange={(e) => setIsSeparateCar(e.target.value)}
+                    />
+                    <span className="custom-radio" />
+                    {texts.carOptions.additional[lang]}
+                  </label>
+                </div>
               </fieldset>
+
               {error && <div className="form-error">{error}</div>}
               {success && <div className="form-success">{success}</div>}
               <button type="submit" className="submit-btn">
