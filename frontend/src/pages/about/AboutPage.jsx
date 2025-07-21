@@ -6,6 +6,7 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 import PageBanner from '../../components/banner/PageBanner';
+import AboutPageSEO from './AboutPageSEO';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AboutPage.less';
@@ -44,7 +45,7 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       <Header />
-
+      <AboutPageSEO />
       <div className="page-content">
         {/* Intro */}
         <div

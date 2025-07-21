@@ -8,6 +8,7 @@ import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
 import DeliveryCalc from '../../components/deliverycalc/DeliveryCalc';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
+import ServicePageSEO from './ServicePageSEO';
 
 import './ServicePage.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,7 +49,7 @@ export default function ServicesPage() {
   return (
     <div className="services-page">
       <Header />
-
+      <ServicePageSEO />
       <main className="page-content">
         {/* Hero Intro */}
         <section

@@ -4,6 +4,7 @@ import ContactForm from '../../components/form/ContactForm';
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import ContactPageSEO from './ContactPageSEO';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { Telephone, Envelope, GeoAlt } from 'react-bootstrap-icons';
@@ -20,6 +21,7 @@ export default function ContactPage() {
   return (
     <div className="page-content">
       <Header />
+      <ContactPageSEO />
       <section className="contacts-section py-5 bg-light">
         <Container>
           <Row className="justify-content-center align-items-center gx-5">

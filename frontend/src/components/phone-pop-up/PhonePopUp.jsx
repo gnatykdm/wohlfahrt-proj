@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { TelephoneFill, X } from 'react-bootstrap-icons';
 import axios from 'axios';
+import { Spinner } from 'react-bootstrap';
 import './PhonePopUp.less';
 
 export default function PhonePopup() {
@@ -10,10 +11,9 @@ export default function PhonePopup() {
 
   const [visible, setVisible] = useState(false);
   const [phone, setPhone] = useState('');
-  const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
+  const [loading, setLoading] = useState(false); 
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(true);
@@ -26,17 +26,12 @@ export default function PhonePopup() {
     setError('');
     setSuccess('');
     setPhone('');
-    setName('');
+    setLoading(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const phoneRegex = /^\+?\d{7,15}$/;
-    if (!name.trim()) {
-      setError(texts.nameError ? texts.nameError[lang] : "Name is required");
-      setSuccess('');
-      return;
-    }
     if (!phoneRegex.test(phone)) {
       setError(texts.error[lang]);
       setSuccess('');
@@ -44,20 +39,25 @@ export default function PhonePopup() {
     }
     setError('');
     setSuccess('');
+    setLoading(true); 
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/feedback-call', { name: name.trim(), phone });
+      const response = await axios.post('http://127.0.0.1:5000/phone-number', { number: phone });
       if (response.status === 200 && response.data.status === 'success') {
         setSuccess(texts.successMessage[lang]);
+        setError('');
         setPhone('');
-        setName('');
         setTimeout(() => setVisible(false), 3000);
       } else {
         setError(texts.error[lang]);
+        setSuccess('');
       }
     } catch (err) {
       setError(texts.error[lang]);
+      setSuccess('');
       console.error(err);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -70,6 +70,7 @@ export default function PhonePopup() {
           className="popup-close"
           onClick={handleClose}
           aria-label="Close popup"
+          disabled={loading}
         >
           <X size={24} />
         </button>
@@ -78,15 +79,6 @@ export default function PhonePopup() {
         </h2>
         <form onSubmit={handleSubmit} className="popup-form" noValidate>
           <input
-            type="text"
-            placeholder={texts.namePlaceholder ? texts.namePlaceholder[lang] : (lang === 'ua' ? 'Ім’я' : 'Name')}
-            value={name}
-            onChange={e => setName(e.target.value)}
-            aria-invalid={!!error}
-            required
-            disabled={success !== ''}
-          />
-          <input
             type="tel"
             placeholder={texts.placeholder[lang]}
             value={phone}
@@ -94,12 +86,22 @@ export default function PhonePopup() {
             aria-invalid={!!error}
             aria-describedby="phoneError"
             required
-            disabled={success !== ''}
+            disabled={loading || !!success}
           />
-          {error && <div id="phoneError" className="error-message">{error}</div>}
-          {success && <div className="success-message">{success}</div>}
-          <button type="submit" className="btn-submit" disabled={success !== ''}>
-            {texts.submitButton[lang]}
+          {error && <div id="phoneError" className="error-message" style={{ color: 'red' }}>{error}</div>}
+          {success && <div className="success-message" style={{ color: 'green' }}>{success}</div>}
+          <button type="submit" className="btn-submit" disabled={loading || !!success}>
+            {loading ? (
+              <Spinner
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="spinner-button"
+              />
+            ) : (
+              texts.submitButton[lang]
+            )}
           </button>
         </form>
       </div>

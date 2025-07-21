@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { GeoAlt, BoxSeam, ArrowRightCircle, Truck, ArrowDown, Telephone } from 'react-bootstrap-icons';
+import {
+  GeoAlt,
+  BoxSeam,
+  ArrowRightCircle,
+  Truck,
+  ArrowDown,
+  Telephone,
+} from 'react-bootstrap-icons';
+// Импорт Bootstrap Spinner
+import { Spinner } from 'react-bootstrap';
 import './DeliveryCalc.less';
 
 export default function DeliveryCalc() {
-  const lang = useSelector(state => state.selectedLang);
-  const texts = useSelector(state => state.deliveryCalcTexts);
+  const lang = useSelector((state) => state.selectedLang);
+  const texts = useSelector((state) => state.deliveryCalcTexts);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [direction, setDirection] = useState('');
@@ -13,10 +22,14 @@ export default function DeliveryCalc() {
   const [dimensions, setDimensions] = useState('');
   const [cargoType, setCargoType] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [carOption, setCarOption] = useState('separate'); // поменял имя для унификации с API — car_option
+  const [carOption, setCarOption] = useState('separate');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+
+  if (!texts || !texts.title || !texts.title[lang]) {
+    return null;
+  }
 
   const openModal = () => {
     setModalVisible(true);
@@ -31,13 +44,37 @@ export default function DeliveryCalc() {
     localStorage.setItem('deliveryCalcModal', 'closed');
   };
 
+  const validatePhone = (phone) => /^\+?\d{7,15}$/.test(phone.replace(/[\s()-]/g, ''));
+
+  const validateDimensions = (dim) => {
+    const val = parseFloat(dim);
+    return !isNaN(val) && val > 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!direction || !weight || !dimensions || !cargoType || !phoneNumber) {
       setError(texts.errors.fillAllFields[lang]);
       setSuccess('');
       return;
     }
+
+    if (!validatePhone(phoneNumber)) {
+      setError(texts.errors.invalidPhone?.[lang] || 'Invalid phone number');
+      setSuccess('');
+      return;
+    }
+
+    if (!validateDimensions(dimensions)) {
+      setError(
+        texts.errors.invalidDimensions?.[lang] ||
+          'Enter the volume in cubic meters, for example: 5'
+      );
+      setSuccess('');
+      return;
+    }
+
     setError('');
     setLoading(true);
 
@@ -93,7 +130,7 @@ export default function DeliveryCalc() {
             <p>{texts.description[lang]}</p>
           </div>
         </div>
-        <div className="spacer"></div>
+        <div className="spacer" />
         <button
           className="btn btn-primary"
           onClick={openModal}
@@ -113,10 +150,7 @@ export default function DeliveryCalc() {
           aria-modal="true"
           aria-labelledby="modalTitle"
         >
-          <div
-            className="feedback-modal"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
             <button
               className="modal-close"
               onClick={closeModal}
@@ -154,11 +188,13 @@ export default function DeliveryCalc() {
               <label>
                 <BoxSeam className="icon" />
                 <input
-                  type="text"
-                  placeholder={texts.placeholders.dimensions[lang]}
+                  type="number"
+                  placeholder={texts.placeholders.dimensions[lang] + ' (cub.m)'}
                   value={dimensions}
                   onChange={(e) => setDimensions(e.target.value)}
                   required
+                  min="0"
+                  step="any"
                   disabled={loading}
                 />
               </label>
@@ -166,7 +202,7 @@ export default function DeliveryCalc() {
                 <Telephone className="icon" />
                 <input
                   type="tel"
-                  placeholder={texts.placeholders.phoneNumber[lang]}
+                  placeholder={texts.placeholders.phoneNumber?.[lang] || 'Phone number'}
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   required
@@ -228,7 +264,17 @@ export default function DeliveryCalc() {
               {success && <div className="form-success">{success}</div>}
 
               <button type="submit" className="submit-btn" disabled={loading}>
-                {loading ? texts.loadingMessage[lang] || 'Loading...' : texts.submitButton[lang]}
+                {loading ? (
+                  <Spinner
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="spinner-button"
+                  />
+                ) : (
+                  texts.submitButton[lang]
+                )}
               </button>
             </form>
           </div>

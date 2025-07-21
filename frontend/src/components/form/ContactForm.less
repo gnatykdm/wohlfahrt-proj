@@ -2,106 +2,96 @@
 
 .contact-form {
   width: 100%;
-  max-width: 620px;
+  max-width: 480px;  // Сделал уже
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 24px 16px;  // Меньше padding для компактности
 
   .contact-info-static {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 
     h2 {
-      font-size: 28px;
+      font-size: 24px;
       .primaryFont(700);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       color: @primaryText;
-    }
-
-    p {
-      font-size: 16px;
-      margin: 8px 0;
-      color: @primaryText;
-
-      strong {
-        font-weight: 600;
-        color: @primary;
-      }
     }
   }
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
 
     .form-field {
       position: relative;
 
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #f0f0f0;
+        border-radius: @borderRadius;
+        background: #fff;
+        font-size: 14px;
+        color: @primaryText;
+        .primaryFont();
+        transition: border 0.25s ease, box-shadow 0.25s ease;
+
+        &:focus {
+          border-color: @primary;
+          box-shadow: 0 0 6px fade(@primary, 20%);
+          outline: none;
+        }
+      }
+
+      textarea {
+        min-height: 120px; // Поменьше
+        resize: vertical;
+      }
+
       &.error {
         input,
         textarea {
-          border-color: #f00;
+          border-color: #dc3545; // Bootstrap danger red
         }
 
         .error-label {
           display: block;
+          color: #dc3545;
+          font-size: 12px;
+          margin-top: 4px;
+          padding-left: 4px;
         }
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 16px 18px;
-        border: 2px solid #f0f0f0;
-        border-radius: @borderRadius;
-        background: #fff;
-        font-size: 15px;
-        color: @primaryText;
-        .primaryFont();
-        transition: border 0.3s ease, box-shadow 0.3s ease;
-
-        &:focus {
-          border-color: @primary;
-          box-shadow: 0 0 0 4px fade(@primary, 10%);
-        }
-      }
-
-      textarea {
-        min-height: 160px;
-        resize: vertical;
       }
 
       .error-label {
         display: none;
-        color: #f00;
-        font-size: 13px;
-        margin-top: 6px;
-        padding-left: 4px;
       }
     }
 
     .btn {
-      margin-top: 10px;
-      font-size: 16px;
-    }
-  }
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: @borderRadius;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
 
-  .msg {
-    padding: 100px 20px;
-    text-align: center;
+      &.btn-primary {
+        background-color: @primary;
+        border: none;
+        color: white;
 
-    .icon {
-      margin-bottom: 20px;
-
-      .fas {
-        font-size: 48px;
-        color: @primary;
+        &:disabled {
+          background-color: lighten(@primary, 30%);
+          cursor: not-allowed;
+        }
       }
-    }
-
-    .title {
-      font-size: 18px;
-      color: @blueText;
-      .primaryFont(600);
     }
   }
 }

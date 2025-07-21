@@ -384,8 +384,12 @@ const initialState = {
         ua: 'Вага (кг)'
       },
       dimensions: {
-        en: 'Dimensions (e.g. 2m x 1.5m x 1m)',
+        en: 'Dimensions (e.g. 12)',
         ua: 'Габарити (напр. 2м x 1.5м x 1м)'
+      },
+      phoneNumber: {
+        en: 'Phone number',
+        ua: 'Номер телефону'
       },
       cargoType: {
         en: 'Select cargo type',

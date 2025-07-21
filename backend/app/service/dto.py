@@ -17,3 +17,6 @@ class MessageDTO(BaseModel):
     phone: str
     email: EmailStr
     msg: str
+
+class PhoneNumberDTO(BaseModel):
+    number: str

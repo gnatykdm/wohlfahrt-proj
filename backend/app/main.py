@@ -5,7 +5,7 @@ from utils import get_logger
 from flask_cors import CORS
 from logging import Logger
 from service.smtp import send_email_smtp, get_email_content, MessageType
-from service.dto import FeedBackCallDTO, MessageDTO, DeliverCalcDTO
+from service.dto import *
 
 logger: Logger = get_logger()
 app: Flask = Flask(__name__)
@@ -80,7 +80,26 @@ def calc_delivery():
 
     return jsonify({"status": "success"}), 200
 
+@app.route("/phone-number", methods=["POST"])
+@limiter.limit("5/minute")
+def phone_number():
+    data = request.get_json()
+    try:
+        dto = PhoneNumberDTO(**data)
+    except TypeError as e:
+        logger.error(f"Invalid data for phone-number: {e}")
+        return jsonify({"error": "Invalid data"}), 400
 
+    logger.info(f"Phone number received: {dto.number}")
+
+    try:
+        subject, body_text, body_html = get_email_content(MessageType.PHONE_CALL, dto)
+        send_email_smtp(subject, body_text, body_html)
+    except Exception as e:
+        logger.error(f"Failed to send email for phone-number: {e}")
+        return jsonify({"error": "Email sending failed"}), 500
+
+    return jsonify({"status": "success"}), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

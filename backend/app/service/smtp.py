@@ -5,33 +5,32 @@ from pydantic import BaseModel
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from service.dto import FeedBackCallDTO, DeliverCalcDTO, MessageDTO
+from service.dto import *
 from core.config import SmtpConfig
 from utils import read_emails
 
-
 EMAILS: List[str] = read_emails()
 smtp_config = SmtpConfig()
-
 
 class MessageType(Enum):
     DELIVERY_CALC = auto()
     MESSAGE = auto()
     FEEDBACK = auto()
-
+    PHONE_CALL = auto()
 
 def get_email_content(message_type: MessageType, dto: BaseModel) -> tuple[str, str, str]:
     if message_type == MessageType.FEEDBACK:
         data: FeedBackCallDTO = dto
         subject = "Wohlfahrt - Швидкий дзвінок"
-        body_text = f"Користувач {data.name} просить передзвонити за номером: {data.phone}"
+        phone = data.phone  # исправлено здесь
+        body_text = f"Користувач {data.name} просить передзвонити за номером: {phone}"
 
         body_html = f"""
         <html>
             <body>
                 <h2>Швидкий дзвінок</h2>
                 <p><strong>Користувач:</strong> {data.name}</p>
-                <p><strong>Номер телефону для зв'язку:</strong> <a href="tel:{data.phone}">{data.phone}</a></p>
+                <p><strong>Номер телефону для зв'язку:</strong> <a href="tel:{phone}">{phone}</a></p>
                 <hr>
                 <p>Це повідомлення автоматично сформоване системою Wohlfahrt.</p>
             </body>
@@ -40,7 +39,7 @@ def get_email_content(message_type: MessageType, dto: BaseModel) -> tuple[str, s
 
     elif message_type == MessageType.DELIVERY_CALC:
         data: DeliverCalcDTO = dto
-        phone = getattr(data, "phone_number", "Не вказано")
+        phone = data.phone_number if data.phone_number else "Не вказано"  # исправлено здесь
         subject = "Wohlfahrt - Розрахунок доставки"
         body_text = (
             f"Запит на розрахунок доставки:\n"
@@ -72,10 +71,11 @@ def get_email_content(message_type: MessageType, dto: BaseModel) -> tuple[str, s
 
     elif message_type == MessageType.MESSAGE:
         data: MessageDTO = dto
+        phone = data.phone  # исправлено здесь
         subject = "Wohlfahrt - Повідомлення"
         body_text = (
             f"Користувач {data.name} залишив повідомлення.\n"
-            f"Телефон: {data.phone}\n"
+            f"Телефон: {phone}\n"
             f"Email: {data.email}\n"
             f"Повідомлення:\n{data.msg}"
         )
@@ -87,9 +87,26 @@ def get_email_content(message_type: MessageType, dto: BaseModel) -> tuple[str, s
             <body>
                 <h2>Повідомлення від користувача</h2>
                 <p><strong>Ім'я:</strong> {data.name}</p>
-                <p><strong>Телефон:</strong> <a href="tel:{data.phone}">{data.phone}</a></p>
+                <p><strong>Телефон:</strong> <a href="tel:{phone}">{phone}</a></p>
                 <p><strong>Email:</strong> <a href="mailto:{data.email}">{data.email}</a></p>
                 <p><strong>Повідомлення:</strong><br>{msg_html}</p>
+                <hr>
+                <p>Це повідомлення автоматично сформоване системою Wohlfahrt.</p>
+            </body>
+        </html>
+        """
+
+    elif message_type == MessageType.PHONE_CALL:
+        data: PhoneNumberDTO = dto
+        phone = data.number  # тут оставляем, если DTO имеет поле number
+        subject = "Wohlfahrt - Запит на дзвінок"
+        body_text = f"Користувач залишив номер телефону: {phone}"
+
+        body_html = f"""
+        <html>
+            <body>
+                <h2>Запит на дзвінок</h2>
+                <p><strong>Номер телефону:</strong> <a href="tel:{phone}">{phone}</a></p>
                 <hr>
                 <p>Це повідомлення автоматично сформоване системою Wohlfahrt.</p>
             </body>
@@ -102,6 +119,7 @@ def get_email_content(message_type: MessageType, dto: BaseModel) -> tuple[str, s
         body_html = f"<html><body><p>{body_text}</p></body></html>"
 
     return subject, body_text, body_html
+
 
 
 def send_email_smtp(subject: str, body_text: str, body_html: str):

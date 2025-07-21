@@ -8,6 +8,7 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/banner/PageBanner';
 import DeliveryCalc from '../../components/deliverycalc/DeliveryCalc';
+import HomePageSEO from './HomePageSEO';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 
 import 'slick-carousel/slick/slick.css';
@@ -58,6 +59,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <Header />
+      <HomePageSEO />
       <div className="page-content">
         {/* Intro Section */}
         <section className="intro-section" aria-label="Introduction Slider">

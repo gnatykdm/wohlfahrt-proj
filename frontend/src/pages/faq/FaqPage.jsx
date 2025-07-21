@@ -6,6 +6,7 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import FloatingPhoneButton from '../../components/floatingphonebutton/FloatingPhoneButton';
 import PageBanner from '../../components/banner/PageBanner';
+import FaqPageSEO from './FaqPageSEO';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './FaqPage.less';
@@ -18,7 +19,6 @@ export default function FaqPage() {
 
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Intersection Observer для появления интро-секции и FAQ секций
   useEffect(() => {
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(
@@ -53,7 +53,7 @@ export default function FaqPage() {
   return (
     <div className="faq-page">
       <Header />
-
+      <FaqPageSEO />
       <div className="page-content">
         {/* Intro Section */}
         <div
@@ -84,58 +84,56 @@ export default function FaqPage() {
         </div>
 
         {/* FAQ Accordion */}
-{/* FAQ Accordion */}
-<div className="faqv2-container py-5">
-  <div className="container">
-    {faqSections.map((faq, index) => {
-      const isOpen = openIndex === index;
-      return (
-        <div
-          key={index}
-          className={`faqv2-section mb-4 rounded shadow-sm ${isOpen ? 'open' : ''}`}
-        >
-          <button
-            type="button"
-            className="faqv2-question btn w-100 text-start d-flex justify-content-between align-items-center"
-            onClick={() => toggleSection(index)}
-            aria-expanded={isOpen}
-            aria-controls={`faqv2-answer-${index}`}
-          >
-            <span className="d-flex align-items-center">
-              <QuestionCircle
-                className="text-primary me-2"
-                aria-hidden="true"
-                style={{ flexShrink: 0 }}
-              />
-              {faq.title[lang]}
-            </span>
-            {isOpen ? <ChevronUp aria-hidden="true" /> : <ChevronDown aria-hidden="true" />}
-          </button>
+        <div className="faqv2-container py-5">
+          <div className="container">
+            {faqSections.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`faqv2-section mb-4 rounded shadow-sm ${isOpen ? 'open' : ''}`}
+                >
+                  <button
+                    type="button"
+                    className="faqv2-question btn w-100 text-start d-flex justify-content-between align-items-center"
+                    onClick={() => toggleSection(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faqv2-answer-${index}`}
+                  >
+                    <span className="d-flex align-items-center">
+                      <QuestionCircle
+                        className="text-primary me-2"
+                        aria-hidden="true"
+                        style={{ flexShrink: 0 }}
+                      />
+                      {faq.title[lang]}
+                    </span>
+                    {isOpen ? <ChevronUp aria-hidden="true" /> : <ChevronDown aria-hidden="true" />}
+                  </button>
 
-          {isOpen && (
-            <div
-              id={`faqv2-answer-${index}`}
-              className="faqv2-answer-wrapper show p-3 bg-white"
-              role="region"
-              aria-hidden={!isOpen}
-            >
-              <p
-                className="faqv2-answer-text mb-0"
-                dangerouslySetInnerHTML={{ __html: faq.content[lang] }}
-              />
-            </div>
-          )}
+                  {isOpen && (
+                    <div
+                      id={`faqv2-answer-${index}`}
+                      className="faqv2-answer-wrapper show p-3 bg-white"
+                      role="region"
+                      aria-hidden={!isOpen}
+                    >
+                      <p
+                        className="faqv2-answer-text mb-0"
+                        dangerouslySetInnerHTML={{ __html: faq.content[lang] }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      );
-    })}
-  </div>
-</div>
 
 
         <FloatingPhoneButton />
         <PageBanner />
       </div>
-
       <Footer />
     </div>
   );
