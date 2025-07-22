@@ -35,7 +35,7 @@ export default function ContactForm() {
     setIsMailSended(false);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/message', form, {
+      const response = await axios.post('/api/message', form, {
         headers: { 'Content-Type': 'application/json' },
       });
 
@@ -128,7 +128,6 @@ export default function ContactForm() {
           )}
         </button>
 
-        {/* Сообщения об успехе или ошибке */}
         {isMailSended && (
           <Alert variant="success" className="mt-3 mb-0">
             {lang === 'ua'

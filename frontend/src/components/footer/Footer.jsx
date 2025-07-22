@@ -72,7 +72,11 @@ export default function Footer({ isSmallFooter }) {
       <div className="f-nav">
         <div className="wrapper">
           <div className="content-row">
-            <Link to="/" className="logo hidden-xs visible-sm">
+            <Link 
+              to="/" 
+              className="logo hidden-xs visible-sm"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               <img src={logo} alt="Logo" />
             </Link>
             <div className="menu">
@@ -80,7 +84,10 @@ export default function Footer({ isSmallFooter }) {
                 <ul>
                   {navItems.map(key => (
                     <li key={key}>
-                      <Link to={key === 'home' ? '/' : `/${key}`}>
+                      <Link 
+                        to={key === 'home' ? '/' : `/${key}`}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      >
                         {generalInfo.navList?.[key]?.[lang]}
                       </Link>
                     </li>

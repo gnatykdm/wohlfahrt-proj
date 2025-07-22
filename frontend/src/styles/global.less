@@ -7,7 +7,7 @@
 @primary: #20323E;
 @darkGrey: #20323E;
 @green: #27AE60;
-@blueText: #192B3A;
+@blueText: #192b3a;
 @greyText: #939191;
 @primaryText: #444444;
 @greyBG: #E2E6E9;
@@ -29,18 +29,6 @@
 @heading-3-tablet: 30px;
 @heading-3-mobile: 25px;
 
-
-@font-face {
-  font-family: 'Moon';
-  src: url('/fonts/Moon.woff2') format('woff2'),
-       url('/fonts/Moon.otf') format('opentype'), 
-       url('/fonts/Moon.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-
 img {
     pointer-events: none;
 }
@@ -58,17 +46,18 @@ html, body {
     }
 }
 body.cyrillic-font {
-    * {
-        font-family: "Comfortaa" !important;
-        letter-spacing: 0;
-    }
-    .fa, .far, .fas {
-        font-family: "Font Awesome 5 Free" !important;
-    }
-    .fab {
-        font-family: "Font Awesome 5 Brands" !important;
-    }
+  * {
+    font-family: "Roboto", sans-serif !important;
+    letter-spacing: 0;
+  }
+  .fa, .far, .fas {
+    font-family: "Font Awesome 5 Free" !important;
+  }
+  .fab {
+    font-family: "Font Awesome 5 Brands" !important;
+  }
 }
+
 h1, h2, h3, h4, h5, h6, ul, li, a, span, p, div, a, input, button, textarea {
     margin: 0;
     padding: 0;
@@ -93,7 +82,7 @@ p {
     line-height: 2;
 }
 .primaryFont(@weight: 500) {
-    font-family: "Moon";
+    font-family: 'Roboto', sans-serif;
     font-weight: @weight;
 }
 

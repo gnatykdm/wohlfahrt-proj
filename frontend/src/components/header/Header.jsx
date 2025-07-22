@@ -129,6 +129,7 @@ export default function Header() {
               ))}
             </div>
 
+            {/* 
             <div className="footer-socials">
               <a href="https://t.me/yourchannel" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                 <Telegram /> 
@@ -140,6 +141,7 @@ export default function Header() {
                 <Instagram />
               </a>
             </div>
+            */}
             <div className="footer-credentials">
               <center>
                 <p>{generalInfo?.copyright?.[lang]}</p>

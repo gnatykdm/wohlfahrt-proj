@@ -72,7 +72,7 @@ const initialState = {
             en: 'Delivery you’ll want to repeat for sure',
             ua: 'Доставка, яку ви забажаєте повторити'
           },
-          buttonLink: '/contacts',
+          buttonLink: '/services',
           buttonText: {
             en: 'Our Services',
             ua: "Наші послуги"

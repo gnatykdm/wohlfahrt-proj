@@ -8,7 +8,6 @@ import {
   ArrowDown,
   Telephone,
 } from 'react-bootstrap-icons';
-// Импорт Bootstrap Spinner
 import { Spinner } from 'react-bootstrap';
 import './DeliveryCalc.less';
 
@@ -88,7 +87,7 @@ export default function DeliveryCalc() {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/calc-delivery', {
+      const response = await fetch('api/calc-delivery', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -76,14 +76,14 @@ const HomePage = () => {
                       <div className="line"></div>
                       <h1 className="intro-title">{slide.title[lang]}</h1>
                       <div className="actions">
-                        <a
-                          href={slide.buttonLink}
+                        <Link
+                          to={slide.buttonLink}
                           className="btn light"
                           aria-label={slide.buttonText[lang]}
                         >
                           <Send style={{ marginRight: '5px' }} />
                           {slide.buttonText[lang]}
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -107,13 +107,13 @@ const HomePage = () => {
                   <div className="line"></div>
                   <h1 className="intro-title">{pageContent.intro.slides[0].title[lang]}</h1>
                   <div className="actions">
-                    <a
-                      href={pageContent.intro.slides[0].buttonLink}
+                    <Link
+                      to={pageContent.intro.slides[0].buttonLink}
                       className="btn light"
                       aria-label={pageContent.intro.slides[0].buttonText[lang]}
                     >
                       {pageContent.intro.slides[0].buttonText[lang]}
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -131,9 +131,9 @@ const HomePage = () => {
               <h2 className="title">{pageContent.about.title[lang]}</h2>
               <div className="line"></div>
               <p className="text">{pageContent.about.text[lang]}</p>
-              <a href="/about" className="btn">
+              <Link to="/about" className="btn">
                 {pageContent.about.buttonText[lang]}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

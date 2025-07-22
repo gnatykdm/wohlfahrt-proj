@@ -39,7 +39,7 @@ export default function FeedbackModal({ visible, onClose }) {
     setLoading(true); 
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/feedback-call', {
+      const response = await axios.post('/api/feedback-call', {
         name: name.trim(),
         phone: phone.replace(/[\s()-]/g, ''),
       });
