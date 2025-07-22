@@ -106,9 +106,9 @@ const initialState = {
       title: { en: 'Advantages', ua: 'Переваги' },
       list: [
         { en: 'We provide transport according to your needs', ua: 'Забезпечуємо транспорт згідно з Вашими потребами' },
-        { en: 'Reasonable and cost-effective pricing', ua: 'Аргументована та вигідна вартість' },
+        { en: 'Reasonable and cost-effective pricing', ua: 'Аргументована та вигідна вартість послуг гарантує якість.' },
         { en: 'Reliable transportation, we insure liability and cargo', ua: 'Надійність перевезення, ми страхуємо відповідальність та вантаж' },
-        { en: 'Regular updates on delivery status', ua: 'Регулярне інформування про статус доставки вантажу' },
+        { en: 'Regular updates on delivery status provided', ua: 'Регулярне інформування про статус доставки вантажу' },
         { en: 'Assistance with documentation and permits', ua: 'Допомога з документальним супроводом, отриманням дозволів' },
         { en: 'Working with us, the client optimizes a range of operational costs', ua: 'Працюючи з нами, клієнт оптимізує низку операційних витрат' }
       ]
@@ -385,7 +385,7 @@ const initialState = {
       },
       dimensions: {
         en: 'Dimensions (e.g. 12)',
-        ua: 'Габарити (напр. 2м x 1.5м x 1м)'
+        ua: 'Габарити (напр. 12)'
       },
       phoneNumber: {
         en: 'Phone number',

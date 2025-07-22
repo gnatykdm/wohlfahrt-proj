@@ -152,7 +152,7 @@ export default function ServicesPage() {
                 </div>
               </div>
             ) : (
-              <p>Содержимое отсутствует</p>
+              <p>Not content available</p>
             )}
           </div>
         </nav>
