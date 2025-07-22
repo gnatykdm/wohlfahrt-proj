@@ -5,9 +5,9 @@ from pydantic import BaseModel
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from service.dto import *
-from core.config import SmtpConfig
-from utils import read_emails
+from ..service.dto import *
+from ..core.config import SmtpConfig
+from ..utils import read_emails
 
 EMAILS: List[str] = read_emails()
 smtp_config = SmtpConfig()

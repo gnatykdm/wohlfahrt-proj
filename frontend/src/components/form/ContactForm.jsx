@@ -35,7 +35,7 @@ export default function ContactForm() {
     setIsMailSended(false);
 
     try {
-      const response = await axios.post('/api/message', form, {
+      const response = await axios.post('https://flask-app-production-9ac5.up.railway.app/message', form, {
         headers: { 'Content-Type': 'application/json' },
       });
 

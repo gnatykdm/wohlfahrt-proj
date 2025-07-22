@@ -39,7 +39,7 @@ export default function FeedbackModal({ visible, onClose }) {
     setLoading(true); 
 
     try {
-      const response = await axios.post('/api/feedback-call', {
+      const response = await axios.post('https://flask-app-production-9ac5.up.railway.app/feedback-call', {
         name: name.trim(),
         phone: phone.replace(/[\s()-]/g, ''),
       });

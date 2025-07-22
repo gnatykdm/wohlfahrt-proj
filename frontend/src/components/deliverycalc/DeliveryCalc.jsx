@@ -87,7 +87,7 @@ export default function DeliveryCalc() {
     };
 
     try {
-      const response = await fetch('api/calc-delivery', {
+      const response = await fetch('https://flask-app-production-9ac5.up.railway.app/calc-delivery', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

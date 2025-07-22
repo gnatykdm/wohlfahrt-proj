@@ -1,16 +1,24 @@
 from flask_limiter.util import get_remote_address
 from flask import Flask, request, jsonify
 from flask_limiter import Limiter
-from utils import get_logger
+from .utils import get_logger
 from flask_cors import CORS
 from logging import Logger
-from service.smtp import send_email_smtp, get_email_content, MessageType
-from service.dto import *
+from .service.smtp import send_email_smtp, get_email_content, MessageType
+from .service.dto import *
 
 logger: Logger = get_logger()
 app: Flask = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+# Разрешаем CORS для всех источников
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    return response
 
 limiter: Limiter = Limiter(
     key_func=get_remote_address,
@@ -102,4 +110,4 @@ def phone_number():
     return jsonify({"status": "success"}), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)

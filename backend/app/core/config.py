@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from utils import str_to_bool
+from ..utils import str_to_bool
 import dotenv
 import os
 

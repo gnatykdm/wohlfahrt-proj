@@ -42,7 +42,7 @@ export default function PhonePopup() {
     setLoading(true); 
 
     try {
-      const response = await axios.post('/api/phone-number', { number: phone });
+      const response = await axios.post('https://flask-app-production-9ac5.up.railway.app/phone-number', { number: phone });
       if (response.status === 200 && response.data.status === 'success') {
         setSuccess(texts.successMessage[lang]);
         setError('');
