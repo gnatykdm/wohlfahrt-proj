@@ -6,15 +6,28 @@ export default function AboutPageSEO() {
   const lang = useSelector(state => state.selectedLang);
   const pageContent = useSelector(state => state.aboutPageContent);
 
-  const title = "Wohlfahrt" + (lang === 'ua' ? " • Про Нас" : " • About Us");
+  const siteName = "Wohlfahrt Logistics";
+  const title =
+    lang === 'ua'
+      ? `${siteName} • Про нас та наші логістичні послуги`
+      : `${siteName} • About Us & Our Logistics Services`;
+
   const description = pageContent?.text?.[lang]
-    ? pageContent.text[lang].replace(/(<([^>]+)>)/gi, '').slice(0, 160)
-    : 'Learn more about our company and services.';
+    ? pageContent.text[lang]
+        .replace(/(<([^>]+)>)/gi, '')
+        .slice(0, 160)
+    : (lang === 'ua'
+        ? 'Дізнайтесь більше про компанію Wohlfahrt — наші логістичні рішення, історію та команду.'
+        : 'Learn more about Wohlfahrt — our logistics solutions, company history, and team.');
+
   const heroImage = pageContent?.bg || '';
 
-  const keywords = lang === 'ua'
-    ? 'про нас, компанія, послуги, історія'
-    : 'about us, company, services, history';
+  const keywords =
+    lang === 'ua'
+      ? 'про нас, компанія, логістика, послуги, історія'
+      : 'about us, company, logistics, services, history';
+
+  const canonicalURL = "https://wohlfahrt.com.ua/about";
 
   return (
     <Helmet>
@@ -28,15 +41,18 @@ export default function AboutPageSEO() {
       {heroImage && <meta property="og:image" content={heroImage} />}
       <meta property="og:type" content="website" />
       <meta property="og:locale" content={lang === 'ua' ? 'uk_UA' : 'en_US'} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:url" content={canonicalURL} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {heroImage && <meta name="twitter:image" content={heroImage} />}
+      <meta name="twitter:url" content={canonicalURL} />
 
       {/* Canonical URL */}
-      <link rel="canonical" href={window.location.href} />
+      <link rel="canonical" href={canonicalURL} />
     </Helmet>
   );
 }

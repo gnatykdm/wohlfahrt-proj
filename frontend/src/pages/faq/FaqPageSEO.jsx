@@ -6,13 +6,26 @@ export default function FaqPageSEO() {
   const lang = useSelector(state => state.selectedLang);
   const pageContent = useSelector(state => state.faqPageContent);
 
-  const title = "Wohlfahrt" + (lang === 'ua' ? " • Питання" : " • FAQ");
-  const description = pageContent?.description?.[lang] || 'Frequently Asked Questions';
+  const siteName = "Wohlfahrt Logistics";
+  const title =
+    lang === 'ua'
+      ? `${siteName} • Поширені питання та відповіді`
+      : `${siteName} • Frequently Asked Questions (FAQ)`;
+
+  const description =
+    pageContent?.description?.[lang] ||
+    (lang === 'ua'
+      ? 'Відповіді на найпоширеніші питання щодо наших логістичних та митних послуг.'
+      : 'Answers to frequently asked questions about our logistics and customs services.');
+
   const heroBg = pageContent?.bgImage || '';
 
-  const keywords = lang === 'ua'
-    ? 'питання, відповіді, faq, підтримка, допомога'
-    : 'questions, answers, faq, support, help';
+  const keywords =
+    lang === 'ua'
+      ? 'питання, відповіді, faq, логістика, допомога'
+      : 'faq, questions, answers, logistics, support, help';
+
+  const canonicalURL = "https://wohlfahrt.com.ua/faq";
 
   return (
     <Helmet>
@@ -26,15 +39,18 @@ export default function FaqPageSEO() {
       {heroBg && <meta property="og:image" content={heroBg} />}
       <meta property="og:type" content="website" />
       <meta property="og:locale" content={lang === 'ua' ? 'uk_UA' : 'en_US'} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:url" content={canonicalURL} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {heroBg && <meta name="twitter:image" content={heroBg} />}
+      <meta name="twitter:url" content={canonicalURL} />
 
       {/* Canonical */}
-      <link rel="canonical" href={window.location.href} />
+      <link rel="canonical" href={canonicalURL} />
     </Helmet>
   );
 }
