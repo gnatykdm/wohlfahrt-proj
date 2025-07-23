@@ -7,20 +7,24 @@ export default function AboutPageSEO() {
   const pageContent = useSelector(state => state.aboutPageContent);
 
   const siteName = "Wohlfahrt Logistics";
-  const title =
+
+  const rawTitle =
     lang === 'ua'
       ? `${siteName} • Про нас та наші логістичні послуги`
       : `${siteName} • About Us & Our Logistics Services`;
 
+  const maxTitleLength = 65;
+  const title =
+    rawTitle.length > maxTitleLength
+      ? rawTitle.slice(0, maxTitleLength - 3) + '...'
+      : rawTitle;
+
   const description = pageContent?.text?.[lang]
-    ? pageContent.text[lang]
-        .replace(/(<([^>]+)>)/gi, '')
-        .slice(0, 160)
+    ? pageContent.text[lang].replace(/(<([^>]+)>)/gi, '').slice(0, 160)
     : (lang === 'ua'
         ? 'Дізнайтесь більше про компанію Wohlfahrt — наші логістичні рішення, історію та команду.'
         : 'Learn more about Wohlfahrt — our logistics solutions, company history, and team.');
 
-  const heroImage = pageContent?.bg || '';
 
   const keywords =
     lang === 'ua'
@@ -34,11 +38,11 @@ export default function AboutPageSEO() {
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <meta name="robots" content="index, follow" />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {heroImage && <meta property="og:image" content={heroImage} />}
       <meta property="og:type" content="website" />
       <meta property="og:locale" content={lang === 'ua' ? 'uk_UA' : 'en_US'} />
       <meta property="og:site_name" content={siteName} />
@@ -48,7 +52,6 @@ export default function AboutPageSEO() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      {heroImage && <meta name="twitter:image" content={heroImage} />}
       <meta name="twitter:url" content={canonicalURL} />
 
       {/* Canonical URL */}
